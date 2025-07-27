@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import MainHeader from '@/components/MainHeader';
 import FooterSection from '@/components/FooterSection';
 import { motion } from 'framer-motion';
@@ -17,7 +18,6 @@ import {
   FaWrench
 } from 'react-icons/fa';
 
-// BreadcrumbHero Component with darker overlay
 const BreadcrumbHero = ({ title, subtitle }) => (
   <motion.section
     className="relative h-[50vh] min-h-[400px] bg-fixed bg-cover bg-center flex items-center justify-center text-white"
@@ -50,7 +50,6 @@ const BreadcrumbHero = ({ title, subtitle }) => (
   </motion.section>
 );
 
-// Service Card Component with enhanced design and hover effects
 const ServiceCard = ({ image, title, description, icon }) => (
   <motion.div
     className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group"
@@ -64,9 +63,11 @@ const ServiceCard = ({ image, title, description, icon }) => (
     viewport={{ once: true }}
   >
     <div className="relative h-48 w-full overflow-hidden">
-      <img 
+      <Image 
         src={image} 
         alt={title} 
+        width={600}
+        height={300}
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent"></div>
@@ -162,7 +163,6 @@ export default function ServicesPage() {
         subtitle="Discover our comprehensive construction solutions"
       />
 
-      {/* Services Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
@@ -188,7 +188,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <motion.section
         className="relative py-24 bg-fixed bg-cover bg-center text-white"
         style={{ backgroundImage: "url('/images/cta/cta-bg.jpg')" }}
@@ -206,10 +205,10 @@ export default function ServicesPage() {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            Let's Build Something <span className="text-[#A9CF45]">Great</span> Together
+            Let&apos;s Build Something <span className="text-[#A9CF45]">Great</span> Together
           </h2>
           <p className="mb-8 text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed">
-            Whether it's a home, road, or infrastructure – KIVARI delivers excellence every time. Let's talk about your next project.
+            Whether it&apos;s a home, road, or infrastructure – KIVARI delivers excellence every time. Let&apos;s talk about your next project.
           </p>
           <motion.a
             href="/contact"

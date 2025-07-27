@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import MainHeader from '@/components/MainHeader';
 import FooterSection from '@/components/FooterSection';
@@ -12,7 +13,7 @@ const fadeIn = {
     y: 0,
     transition: { 
       duration: 0.8, 
-      ease: [0.16, 1, 0.3, 1] // Smoother easing curve
+      ease: [0.16, 1, 0.3, 1]
     }
   }
 };
@@ -22,7 +23,7 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15, // More natural stagger
+      staggerChildren: 0.15,
       delayChildren: 0.2
     }
   }
@@ -33,7 +34,7 @@ export default function AboutPage() {
     <>
       <MainHeader />
 
-      {/* Hero Section - Enhanced with gradient overlay */}
+      {/* Hero Section */}
       <motion.section 
         className="relative h-[50vh] min-h-[400px] bg-fixed bg-cover bg-center flex items-center justify-center text-white"
         style={{ 
@@ -66,7 +67,7 @@ export default function AboutPage() {
         </motion.div>
       </motion.section>
 
-      {/* About Section - Improved layout */}
+      {/* About Section */}
       <motion.section 
         className="py-20 bg-white"
         initial="hidden"
@@ -76,10 +77,7 @@ export default function AboutPage() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text */}
-          <motion.div 
-            className="space-y-6"
-            variants={fadeIn}
-          >
+          <motion.div className="space-y-6" variants={fadeIn}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
               About <span className="text-[#A9CF45]">KIVARI</span>
             </h2>
@@ -104,7 +102,7 @@ export default function AboutPage() {
             </motion.a>
           </motion.div>
 
-          {/* Image - Enhanced with border animation */}
+          {/* Image */}
           <motion.div 
             className="relative overflow-hidden rounded-xl shadow-2xl"
             variants={{
@@ -122,9 +120,11 @@ export default function AboutPage() {
               boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
             }}
           >
-            <img 
+            <Image 
               src="/images/about/aboutus.jpg" 
               alt="About KIVARI" 
+              width={800}
+              height={500}
               className="w-full h-auto object-cover transition-transform duration-700 hover:scale-105"
             />
             <div className="absolute inset-0 border-4 border-white/20 rounded-xl pointer-events-none"></div>
@@ -132,10 +132,9 @@ export default function AboutPage() {
         </div>
       </motion.section>
 
-      {/* Core Principles - Enhanced with icons */}
+      {/* Core Principles */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Heading Group */}
           <div className="text-center mb-16">
             <motion.h2 
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4"
@@ -191,16 +190,14 @@ export default function AboutPage() {
                   {item.icon}
                 </div>
                 <h3 className="text-xl font-bold text-[#A9CF45] mb-3">{item.title}</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {item.content}
-                </p>
+                <p className="text-gray-600 leading-relaxed">{item.content}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* CTA Section - Enhanced with dual buttons */}
+      {/* CTA Section */}
       <motion.section
         className="relative py-24 bg-fixed bg-cover bg-center text-white"
         style={{ backgroundImage: "url('/images/cta/cta-bg.jpg')" }}
@@ -218,10 +215,10 @@ export default function AboutPage() {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            Let's Build Something <span className="text-[#A9CF45]">Great</span> Together
+            Let&apos;s Build Something <span className="text-[#A9CF45]">Great</span> Together
           </h2>
           <p className="mb-8 text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">
-            Whether it's a home, road, or large-scale infrastructure – KIVARI is here to deliver. Reach out today to discuss your next project.
+            Whether it&apos;s a home, road, or large-scale infrastructure – KIVARI is here to deliver. Reach out today to discuss your next project.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.a
