@@ -103,7 +103,7 @@ export default function ContactCTA() {
             </motion.button>
           </Link>
 
-          <Link href="tel:+27812345678">
+          <Link href="tel:+27 71 902 0281">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -124,8 +124,8 @@ export default function ContactCTA() {
             {
               icon: <FaPhone className="text-2xl text-[#A9CF45]" />,
               title: "Phone",
-              content: "+27 81 234 5678",
-              href: "tel:+27812345678"
+              content: "+27 71 902 0281",
+              href: "tel:+27719020281"
             },
             {
               icon: <FaEnvelope className="text-2xl text-[#A9CF45]" />,

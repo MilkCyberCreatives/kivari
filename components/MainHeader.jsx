@@ -87,7 +87,7 @@ export default function MainHeader() {
           {/* Contact Info */}
           <div className="ml-6 flex items-center gap-3">
             <motion.a
-              href="tel:+27812345678"
+              href="tel:+27719020281"
               className="rounded-full border-2 p-2 hover:border-[#A9CF45] hover:bg-[#A9CF45]/10 transition-colors duration-300"
               aria-label="Call now"
               whileHover={{ rotate: 15 }}
@@ -97,10 +97,10 @@ export default function MainHeader() {
 
             <div className="leading-tight text-sm">
               <a
-                href="tel:+27812345678"
+                href="tel:+27719020281"
                 className="block hover:text-[#A9CF45] transition-colors duration-300 font-medium"
               >
-                +27 81 234 5678
+                +27 71 902 0281
               </a>
               <a
                 href="mailto:info@kivari.co.za"

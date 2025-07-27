@@ -110,7 +110,7 @@ export default function HeroSection({ scrollToRef }) {
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
               <motion.a
-                href="#about"
+                href="about"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-gradient-to-r from-[#A9CF45] to-[#8ab733] hover:from-[#8ab733] hover:to-[#7aa82d] text-black px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-3 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-[#A9CF45]/30 text-lg"
@@ -125,7 +125,7 @@ export default function HeroSection({ scrollToRef }) {
               </motion.a>
 
               <motion.a
-                href="#services"
+                href="services"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-white/90 hover:bg-white text-gray-800 px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-3 transition-all duration-300 shadow-lg hover:shadow-xl text-lg"

@@ -80,16 +80,16 @@ export default function ContactPage() {
               <div>
                 <h3 className="font-bold text-gray-800 mb-2">Phone</h3>
                 <a 
-                  href="tel:+27812345678" 
+                  href="tel:+27719020281"
                   className="text-gray-600 hover:text-[#A9CF45] transition-colors block mb-1"
                 >
-                  011 564 4545
+                  +27 71 902 0281
                 </a>
                 <a 
-                  href="tel:+27812345679" 
+                  href="tel:+27719020281" 
                   className="text-gray-600 hover:text-[#A9CF45] transition-colors block"
                 >
-                  +27 81 234 5679
+                  +27 71 902 0281
                 </a>
               </div>
             </motion.div>

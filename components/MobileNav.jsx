@@ -66,14 +66,14 @@ export default function MobileNav({ menuOpen, setMenuOpen }) {
           >
             <div className="space-y-4">
               <a
-                href="tel:+27812345678"
+                href="tel:+27 71 902 0281"
                 className="flex items-center gap-3 text-gray-800 hover:text-[#A9CF45] transition-colors duration-300"
                 onClick={() => setMenuOpen(false)}
               >
                 <span className="bg-gray-100 p-3 rounded-full">
                   <FaPhone className="text-[#A9CF45]" />
                 </span>
-                <span className="font-medium">+27 81 234 5678</span>
+                <span className="font-medium">+27 71 902 0281</span>
               </a>
 
               <a
