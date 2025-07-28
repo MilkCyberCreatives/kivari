@@ -85,12 +85,6 @@ export default function ContactPage() {
                 >
                   +27 71 902 0281
                 </a>
-                <a 
-                  href="tel:+27719020281" 
-                  className="text-gray-600 hover:text-[#A9CF45] transition-colors block"
-                >
-                  +27 71 902 0281
-                </a>
               </div>
             </motion.div>
 
@@ -188,18 +182,20 @@ export default function ContactPage() {
 
       {/* Map Section - Added for better UX */}
       <section className="bg-gray-100 py-0">
-        <div className="max-w-6xl mx-auto h-96">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.620763958015!2d28.13773831502894!3d-26.18398798344888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9513c7b5a6a3a1%3A0x9a3a9b3b3b3b3b3b!2s123%20Main%20St%2C%20Midrand%2C%20Gauteng%2C%20South%20Africa!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            className="rounded-b-xl"
-          ></iframe>
-        </div>
-      </section>
+  <div className="w-full h-96">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3584.105958742963!2d28.12630321500254!3d-25.999180983511317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9563c03bacc72d%3A0xf33cf71be61cf0e3!2sMidrand%2C%20Gauteng!5e0!3m2!1sen!2sza!4v1620300000000!5m2!1sen!2sza"
+      width="100%"
+      height="100%"
+      style={{ border: 0 }}
+      allowFullScreen
+      loading="lazy"
+      className="rounded-b-xl"
+      referrerPolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+</section>
+
 
       <FooterSection />
     </>
