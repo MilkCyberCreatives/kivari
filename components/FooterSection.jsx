@@ -34,7 +34,7 @@ export default function FooterSection() {
   ];
 
   const quickLinks = [
-    { name: "Home", href: "/index" },
+    { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Projects", href: "/projects" },
@@ -43,7 +43,7 @@ export default function FooterSection() {
 
   const contactInfo = [
     { icon: <FaMapMarkerAlt />, text: "Midrand, Gauteng", href: "https://maps.google.com" },
-    { icon: <FaPhoneAlt />, text: "+27 12 345 6789", href: "tel:+2719020281" },
+    { icon: <FaPhoneAlt />, text: "071 902 0281", href: "tel:+2719020281" },
     { icon: <FaEnvelope />, text: "info@kivari.co.za", href: "mailto:info@kivari.co.za" }
   ];
 
