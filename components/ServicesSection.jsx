@@ -30,17 +30,17 @@ const services = [
     image: '/images/services/renovations.jpg',
     features: ['Home additions', 'Structural upgrades', 'Modernizations']
   },
-  {
-    title: 'Roof Construction & Waterproofing',
-    description: 'Installation and repair of durable roofing systems and leak-proof waterproofing solutions.',
-    image: '/images/services/roofing.jpg',
-    features: ['Roof installations', 'Waterproof membranes', 'Roof repairs']
-  },
+  // {
+  //   title: 'Roof Construction & Waterproofing',
+  //   description: 'Installation and repair of durable roofing systems and leak-proof waterproofing solutions.',
+  //   image: '/images/services/roofing.jpg',
+  //   features: ['Roof installations', 'Waterproof membranes', 'Roof repairs']
+  // },
   {
     title: 'Painting, Plastering & Finishes',
     description: 'Interior and exterior painting, plastering, and decorative coatings delivered to premium standards.',
     image: '/images/services/painting.jpg',
-    features: ['Interior painting', 'Exterior finishes', 'Decorative coatings']
+    features: ['Residential painting', 'Commercial painting &', 'Finishes']
   },
 ];
 

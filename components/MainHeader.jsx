@@ -42,11 +42,11 @@ export default function MainHeader() {
         >
           <Link href="/">
             <motion.img
-              src="/logo.svg"
-              alt="KIVARI Logo"
-              className="h-14 md:h-16 w-auto cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+  src={scrolled ? "/logo2.svg" : "/logo.svg"}
+  alt="KIVARI Logo"
+  className="h-14 md:h-16 w-auto cursor-pointer transition-all duration-300"
+  whileHover={{ scale: 1.05 }}
+  transition={{ type: "spring", stiffness: 400, damping: 10 }}
             />
           </Link>
         </motion.div>

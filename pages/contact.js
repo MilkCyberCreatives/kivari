@@ -57,7 +57,7 @@ export default function ContactPage() {
                 <FiMapPin className="text-[#A9CF45] text-xl" />
               </div>
               <div>
-                <h3 className="font-bold text-gray-800 mb-2">Office Address</h3>
+                <h3 className="font-bold text-gray-800 mb-2">Address</h3>
                 <p className="text-gray-600">Midrand, Gauteng</p>
                 <a 
                   href="https://maps.google.com" 

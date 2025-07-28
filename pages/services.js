@@ -109,12 +109,12 @@ const services = [
     image: '/images/services/renovations.jpg',
     icon: <FaBuilding className="text-xl" />
   },
-  {
-    title: 'Roof Construction & Waterproofing',
-    description: 'Installation and repair of durable roofing systems and leak-proof waterproofing solutions.',
-    image: '/images/services/roofing.jpg',
-    icon: <FaHardHat className="text-xl" />
-  },
+  // {
+  //   title: 'Roof Construction & Waterproofing',
+  //   description: 'Installation and repair of durable roofing systems and leak-proof waterproofing solutions.',
+  //   image: '/images/services/roofing.jpg',
+  //   icon: <FaHardHat className="text-xl" />
+  // },
   {
     title: 'Painting, Plastering & Finishes',
     description: 'Interior and exterior painting, plastering, and decorative coatings delivered to premium standards.',

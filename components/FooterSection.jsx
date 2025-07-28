@@ -70,7 +70,7 @@ export default function FooterSection() {
               />
             </Link>
             <p className="text-gray-400 text-sm mb-6">
-              Building excellence in every brick. KIVARI delivers quality construction solutions across South Africa.
+              KIVARI delivers quality construction solutions across South Africa.
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social, index) => (
@@ -159,9 +159,6 @@ export default function FooterSection() {
       Request Callback
     </motion.button>
   </form>
-  <p className="text-gray-500 text-xs mt-2">
-    We will contact you within 24 hours
-  </p>
 </motion.div>
         </div>
 
