@@ -1,58 +1,72 @@
-'use client';
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaArrowUp } from 'react-icons/fa';
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { FaArrowUp } from "react-icons/fa";
 
 export default function ScrollToTopButton() {
-  const [showButton, setShowButton] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const reduceMotion = useReducedMotion();
+  const rafRef = useRef(null);
 
+  // Efficient scroll tracking (throttled via rAF)
   useEffect(() => {
     const handleScroll = () => {
-      setShowButton(window.scrollY > 300);
+      if (rafRef.current) return;
+      rafRef.current = requestAnimationFrame(() => {
+        setVisible(window.scrollY > 300);
+        rafRef.current = null;
+      });
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ 
-      top: 0, 
-      behavior: 'smooth' 
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <AnimatePresence>
-      {showButton && (
+      {visible && (
         <motion.button
+          type="button"
+          aria-label="Scroll to top"
+          onClick={scrollToTop}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50"
-          aria-label="Scroll to top"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.92 }}
+          className="fixed bottom-8 right-8 z-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
         >
           <motion.div
-            className="bg-gradient-to-br from-[#A9CF45] to-[#8ab733] text-gray-900 p-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center"
-            animate={{
-              y: [0, -5, 0],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+            className="relative bg-gradient-to-br from-[#A9CF45] to-[#8ab733] text-gray-900 p-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center"
+            animate={
+              reduceMotion
+                ? {}
+                : {
+                    y: [0, -6, 0],
+                    transition: {
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    },
+                  }
+            }
           >
-            <FaArrowUp className="text-xl" />
-            <motion.span 
-              className="absolute -bottom-8 text-xs font-medium text-white opacity-0 group-hover:opacity-100 transition-opacity"
+            <FaArrowUp className="text-2xl" />
+
+            {/* Tooltip */}
+            <motion.span
+              className="absolute -bottom-8 text-xs font-medium text-gray-700 bg-white/80 px-2 py-0.5 rounded-md shadow-md opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity"
               initial={{ opacity: 0 }}
               whileHover={{ opacity: 1 }}
             >
-              Back to Top
+              Back to top
             </motion.span>
           </motion.div>
         </motion.button>

@@ -2,14 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-/* === Root Variables === */
+/* === Root Variables & Base === */
 @layer base {
   :root {
+    /* HSL or RGB both work; keeping your RGBs */
     --background: 255 255 255;
     --foreground: 23 23 23;
-    --primary: 169 207 69;
-    --primary-dark: 140 175 55; /* 10% darker than primary */
+    --primary: 169 207 69;     /* #A9CF45 */
+    --primary-dark: 140 175 55;/* ~10% darker */
     --radius: 0.5rem;
+    color-scheme: light dark;
   }
 
   .dark {
@@ -19,108 +21,103 @@
 
   html {
     @apply scroll-smooth;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth; /* fallback if Tailwind class stripped */
     scroll-padding-top: 6rem;
   }
 
   body {
-    @apply bg-[rgb(var(--background))] text-[rgb(var(--foreground))] font-sans antialiased;
-    font-feature-settings: 'rlig' 1, 'calt' 1;
+    @apply bg-background text-foreground antialiased;
+    /* Use system stack; Inter can still be injected via @fontsource/inter in _app */
+    font-feature-settings: "rlig" 1, "calt" 1;
     text-rendering: optimizeLegibility;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
 
-  /* Typography */
+  /* Typography scale */
   h1 { @apply text-4xl md:text-5xl lg:text-6xl; }
   h2 { @apply text-3xl md:text-4xl; }
   h3 { @apply text-2xl md:text-3xl; }
   h4 { @apply text-xl md:text-2xl; }
-  h1, h2, h3, h4 {
-    @apply font-bold leading-tight tracking-tight scroll-mt-20;
-  }
+  h1, h2, h3, h4 { @apply font-bold leading-tight tracking-tight scroll-mt-20; }
 
   /* Links */
-  a {
-    @apply transition-colors duration-200 no-underline;
-  }
+  a { @apply transition-colors duration-200 no-underline; }
+  a:hover { @apply no-underline; }
 
-  a:hover {
-    @apply no-underline;
-  }
-
-  /* Focus states */
+  /* Focus ring (accessible) */
   :focus-visible {
-    @apply outline-none ring-2 ring-[rgb(var(--primary))] ring-offset-2 ring-offset-[rgb(var(--background))];
+    @apply outline-none ring-2 ring-primary ring-offset-2 bg-transparent;
+    /* Use background var for ring offset so it looks right on dark/light */
+    --tw-ring-offset-color: rgb(var(--background));
   }
 
-  /* Selection styling */
+  /* Text selection — use raw CSS for perfect opacity support */
   ::selection {
-    @apply bg-primary/20 text-foreground;
+    background-color: rgba(var(--primary), 0.2);
+    color: rgb(var(--foreground));
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *:not([data-allow-motion]) {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
-/* === Utilities === */
+/* === Components & Utilities === */
 @layer utilities {
+  /* Simple reveal animations (opt-in) */
   .animate-up {
     animation: fadeInUp 0.6s ease-out both;
   }
-
   .animate-left {
     animation: fadeInLeft 0.6s ease-out both;
   }
-
   .animate-in {
     animation: fadeIn 0.5s ease-out both;
   }
 
   @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
-
   @keyframes fadeInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(-30px); }
+    to   { opacity: 1; transform: translateX(0); }
   }
-
   @keyframes fadeIn {
     from { opacity: 0; }
-    to { opacity: 1; }
+    to   { opacity: 1; }
   }
 
-  /* Text shadows */
-  .text-shadow {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+  /* Text shadow helpers */
+  .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+  .text-shadow-dark { text-shadow: 0 2px 4px rgba(0,0,0,0.25); }
 
-  .text-shadow-dark {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-  }
-
-  /* Background pattern (optional) */
+  /* Subtle SVG grid background (optional) */
   .bg-grid {
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23e5e7eb25' stroke-width='1' stroke-dasharray='4' stroke-linecap='square'/%3e%3c/svg%3e");
   }
 
-  /* Reusable button utility */
+  /* Reusable button utility (variable-backed) */
   .btn-primary {
-    @apply bg-[rgb(var(--primary))] hover:bg-[rgb(var(--primary-dark))] text-black px-6 py-3 rounded-md font-semibold shadow-md transition-all duration-300;
+    @apply bg-primary hover:bg-[rgb(var(--primary-dark))] text-black px-6 py-3 rounded-md font-semibold shadow-md transition-all duration-300;
+    border-radius: var(--radius);
   }
 
   /* Reusable card utility */
   .card {
     @apply bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden;
   }
+}
+
+/* Minor polish */
+img { image-rendering: auto; }
+
+/* Smooth container defaults for consistent layouts (optional) */
+.container {
+  @apply mx-auto;
 }

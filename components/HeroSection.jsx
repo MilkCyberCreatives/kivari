@@ -1,188 +1,179 @@
-import React, { useRef } from "react";
+"use client";
+
+import React, { useMemo } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
 import { FaArrowRight, FaArrowDown } from "react-icons/fa";
-import { motion } from "framer-motion";
-import Head from "next/head";
 
 export default function HeroSection({ scrollToRef }) {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
+  const reduceMotion = useReducedMotion();
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
+  const containerVariants = useMemo(
+    () =>
+      reduceMotion
+        ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
+        : {
+            hidden: { opacity: 0 },
+            visible: { opacity: 1, transition: { staggerChildren: 0.18, delayChildren: 0.2 } },
+          },
+    [reduceMotion]
+  );
+
+  const itemVariants = useMemo(
+    () =>
+      reduceMotion
+        ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
+        : { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } } },
+    [reduceMotion]
+  );
 
   const handleScrollClick = () => {
-    scrollToRef.current?.scrollIntoView({ behavior: 'smooth' });
+    scrollToRef?.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Deterministic “particles” so SSR/CSR match (no Math.random in render)
+  const particles = useMemo(() => {
+    const n = 12;
+    return Array.from({ length: n }, (_, i) => {
+      const top = (i * 13) % 100;   // 0..99
+      const left = (i * 21) % 100;  // 0..99
+      const size = 6 + ((i * 7) % 10); // 6..15px
+      const driftY = (i % 2 === 0 ? 1 : -1) * (10 + ((i * 3) % 40)); // -50..50
+      const driftX = (i % 3 === 0 ? 1 : -1) * (6 + ((i * 5) % 24));  // -30..30
+      const duration = 10 + (i % 8); // 10..17s
+      const delay = (i % 4) * 0.25;
+      return { top, left, size, driftY, driftX, duration, delay };
+    });
+  }, []);
+
   return (
-    <>
-      <Head>
-        <link rel="preload" href="/images/hero-bg.jpg" as="image" />
-        <link rel="preload" href="/images/hero-person.png" as="image" />
-      </Head>
+    <section
+      aria-label="KIVARI hero"
+      className="relative w-full h-screen flex items-center overflow-hidden"
+    >
+      {/* Optimized hero background (LCP) */}
+      <Image
+        src="/images/hero-bg.jpg"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+        aria-hidden="true"
+      />
 
-      <section
-        className="relative w-full h-screen bg-cover bg-center flex items-center overflow-hidden"
-        style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}
-      >
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50 z-0"></div>
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50 z-0" aria-hidden="true" />
 
-        {/* Floating Particles Effect */}
-        <div className="absolute inset-0 z-0 opacity-20">
-          {[...Array(15)].map((_, i) => (
+      {/* Floating Particles (decorative & reduced-motion aware) */}
+      {!reduceMotion && (
+        <div className="absolute inset-0 z-0 opacity-20" aria-hidden="true">
+          {particles.map((p, i) => (
             <motion.div
               key={i}
               className="absolute bg-[#A9CF45] rounded-full"
-              style={{
-                width: Math.random() * 10 + 5 + "px",
-                height: Math.random() * 10 + 5 + "px",
-                top: Math.random() * 100 + "%",
-                left: Math.random() * 100 + "%",
-              }}
-              animate={{
-                y: [0, (Math.random() - 0.5) * 100],
-                x: [0, (Math.random() - 0.5) * 50],
-                opacity: [0.3, 0.8, 0.3],
-              }}
-              transition={{
-                duration: Math.random() * 10 + 10,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
+              style={{ top: `${p.top}%`, left: `${p.left}%`, width: `${p.size}px`, height: `${p.size}px` }}
+              animate={{ y: [0, p.driftY, 0], x: [0, p.driftX, 0], opacity: [0.3, 0.8, 0.3] }}
+              transition={{ duration: p.duration, repeat: Infinity, repeatType: "reverse", delay: p.delay, ease: "easeInOut" }}
             />
           ))}
         </div>
+      )}
 
-        {/* Main Content */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex flex-col lg:flex-row items-center justify-center lg:justify-between pt-24 lg:pt-0"
-        >
-          {/* Text Section */}
-          <div className="max-w-2xl text-center lg:text-left">
-            <motion.h1
-              variants={itemVariants}
-              className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold text-white leading-tight mb-6"
-            >
-              <span className="text-[#A9CF45]">Affordable</span> Price,{" "}
-              <motion.br
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-              />
-              <span className="text-[#A9CF45]">Certified</span> Experts &{" "}
-              <motion.br
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
-              />
-              <span className="text-[#A9CF45]">Absolute</span> Solutions
-            </motion.h1>
+      {/* Main Content */}
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex flex-col lg:flex-row items-center justify-center lg:justify-between pt-24 lg:pt-0"
+      >
+        {/* Text */}
+        <div className="max-w-2xl text-center lg:text-left">
+          <motion.h1
+            variants={itemVariants}
+            className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold text-white leading-tight mb-6"
+          >
+            <span className="text-[#A9CF45]">Affordable</span> Price,
+            <br className="hidden sm:block" />
+            <span className="text-[#A9CF45]">Certified</span> Experts &
+            <br className="hidden sm:block" />
+            <span className="text-[#A9CF45]">Absolute</span> Solutions
+          </motion.h1>
 
-            <motion.p
-              variants={itemVariants}
-              className="text-white/90 text-lg md:text-xl mb-8 max-w-lg leading-relaxed mx-auto lg:mx-0"
-            >
-              We pride ourselves on providing the best construction services
-              currently available, utilizing the latest tools, technologies and
-              efficient methods.
-            </motion.p>
+          <motion.p
+            variants={itemVariants}
+            className="text-white/90 text-lg md:text-xl mb-8 max-w-lg leading-relaxed mx-auto lg:mx-0"
+          >
+            We provide high-quality construction services using modern tools, technology, and efficient methods—delivering safely, on time, and on budget.
+          </motion.p>
 
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <Link
+              href="/about"
+              className="bg-gradient-to-r from-[#A9CF45] to-[#8ab733] hover:from-[#8ab733] hover:to-[#7aa82d] text-black px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-3 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-[#A9CF45]/30 text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
             >
-              <motion.a
-                href="about"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-[#A9CF45] to-[#8ab733] hover:from-[#8ab733] hover:to-[#7aa82d] text-black px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-3 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-[#A9CF45]/30 text-lg"
-              >
-                More About Us
-                <motion.span
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ repeat: Infinity, duration: 2 }}
-                >
+              More About Us
+              {!reduceMotion && (
+                <motion.span aria-hidden="true" animate={{ x: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
                   <FaArrowRight />
                 </motion.span>
-              </motion.a>
+              )}
+            </Link>
 
-              <motion.a
-                href="services"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white/90 hover:bg-white text-gray-800 px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-3 transition-all duration-300 shadow-lg hover:shadow-xl text-lg"
-              >
-                Our Services
-                <motion.span
-                  animate={{ y: [0, 5, 0] }}
-                  transition={{ repeat: Infinity, duration: 2 }}
-                >
+            <Link
+              href="/services"
+              className="bg-white/90 hover:bg-white text-gray-800 px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-3 transition-all duration-300 shadow-lg hover:shadow-xl text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
+            >
+              Our Services
+              {!reduceMotion && (
+                <motion.span aria-hidden="true" animate={{ y: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
                   <FaArrowDown />
                 </motion.span>
-              </motion.a>
-            </motion.div>
-          </div>
-
-          {/* Image Section */}
-          <motion.div
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-10 lg:mt-0 flex justify-center items-end h-full w-full lg:w-auto"
-          >
-            <motion.img
-              src="/images/hero-person.png"
-              alt="Construction Professional"
-              className="h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[85vh] object-contain"
-              initial={{ y: 50 }}
-              animate={{ y: 0 }}
-              transition={{
-                duration: 1,
-                delay: 0.6,
-                type: "spring",
-                damping: 10,
-              }}
-            />
+              )}
+            </Link>
           </motion.div>
-        </motion.div>
+        </div>
 
-        {/* Scroll Down Arrow */}
-        <motion.button
-          onClick={handleScrollClick}
-          aria-label="Scroll to next section"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5 }}
-          whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.9 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 bg-transparent border-none cursor-pointer focus:outline-none"
+        {/* Person / Foreground visual */}
+        <motion.div
+          initial={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 80 }}
+          animate={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mt-10 lg:mt-0 flex justify-center items-end h-full w-full lg:w-auto"
         >
-          <motion.div
-            animate={{ y: [0, 15, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-          >
+          <Image
+            src="/images/hero-person.png"
+            alt="KIVARI construction professional"
+            width={720}
+            height={960}
+            priority
+            sizes="(max-width: 1024px) 60vw, 40vw"
+            className="h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[85vh] w-auto object-contain"
+          />
+        </motion.div>
+      </motion.div>
+
+      {/* Scroll Down */}
+      <motion.button
+        onClick={handleScrollClick}
+        aria-label="Scroll to next section"
+        initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        animate={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+        transition={{ delay: 1.2 }}
+        whileHover={reduceMotion ? {} : { scale: 1.12 }}
+        whileTap={reduceMotion ? {} : { scale: 0.92 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 bg-transparent border-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] rounded-full p-2"
+        type="button"
+      >
+        {!reduceMotion ? (
+          <motion.div animate={{ y: [0, 15, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
             <FaArrowDown className="text-white text-3xl" />
           </motion.div>
-        </motion.button>
-      </section>
-    </>
+        ) : (
+          <FaArrowDown className="text-white text-3xl" />
+        )}
+      </motion.button>
+    </section>
   );
 }
