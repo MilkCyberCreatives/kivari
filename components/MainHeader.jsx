@@ -71,7 +71,7 @@ export default function MainHeader() {
   return (
     <header
       role="banner"
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 header-water ${
+      className={`fixed top-0 left-0 w-full z-50 overflow-visible transition-all duration-500 header-water ${
         solidHeader
           ? "bg-white/95 backdrop-blur-md border-b border-gray-200/80 text-gray-900"
           : "bg-white/95 backdrop-blur-md border-b border-gray-200/80 text-gray-900 md:bg-transparent md:backdrop-blur-0 md:border-transparent md:text-white"
