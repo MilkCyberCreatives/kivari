@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -10,12 +10,11 @@ import MobileNav from "./MobileNav";
 
 export default function MainHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const router = useRouter();
-  const rafId = useRef(null);
   const reduceMotion = useReducedMotion();
   const displayEmail = (process.env.NEXT_PUBLIC_DISPLAY_EMAIL || "info1.kivari@gmail.com").trim();
   const isHome = router.pathname === "/";
+  const isLightHeader = isHome;
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -23,24 +22,6 @@ export default function MainHeader() {
     router.events.on("routeChangeComplete", handleRoute);
     return () => router.events.off("routeChangeComplete", handleRoute);
   }, [router.events]);
-
-  // Cheap, rAF-throttled scroll listener (passive) for better perf
-  useEffect(() => {
-    const onScroll = () => {
-      if (rafId.current) return;
-      rafId.current = requestAnimationFrame(() => {
-        const threshold = isHome ? 120 : 10;
-        setScrolled(window.scrollY > threshold);
-        rafId.current = null;
-      });
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll(); // initialize on mount
-    return () => {
-      if (rafId.current) cancelAnimationFrame(rafId.current);
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, [isHome]);
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -64,12 +45,8 @@ export default function MainHeader() {
   return (
     <header
       role="banner"
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        isHome
-          ? "header-water bg-transparent text-white"
-          : scrolled
-          ? "header-water bg-white/90 backdrop-blur-md border-b border-gray-200/70 text-gray-800"
-          : "header-water bg-transparent text-white"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 header-water bg-transparent ${
+        isLightHeader ? "text-white" : "text-gray-900"
       }`}
     >
       {/* Skip link for accessibility */}
@@ -96,7 +73,7 @@ export default function MainHeader() {
             >
               {/* Use Next/Image to avoid layout shift & enable AVIF/WebP */}
               <Image
-                src={isHome ? "/logo.svg" : scrolled ? "/logo2.svg" : "/logo.svg"}
+                src={isLightHeader ? "/logo.svg" : "/logo2.svg"}
                 alt="KIVARI Logo"
                 width={160}
                 height={64}
