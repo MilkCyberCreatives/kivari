@@ -1,26 +1,81 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { FiMail, FiPhone, FiMapPin, FiSend, FiUser, FiMessageSquare } from 'react-icons/fi';
 import MainHeader from '@/components/MainHeader';
 import FooterSection from '@/components/FooterSection';
 import { motion } from 'framer-motion';
 import SEO from '@/components/SEO';
 
+const initialFormState = {
+  name: '',
+  email: '',
+  subject: '',
+  message: '',
+  company: '',
+};
+
 export default function ContactPage() {
   const siteUrl = 'https://www.kivari.co.za';
   const displayEmail = process.env.NEXT_PUBLIC_DISPLAY_EMAIL || 'info1.kivari@gmail.com';
+
+  const [formState, setFormState] = useState(initialFormState);
+  const [isSending, setIsSending] = useState(false);
+  const [feedback, setFeedback] = useState({ type: '', message: '' });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (isSending) return;
+
+    setIsSending(true);
+    setFeedback({ type: '', message: '' });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          formType: 'contact',
+          name: formState.name,
+          email: formState.email,
+          subject: formState.subject,
+          message: formState.message,
+          company: formState.company,
+        }),
+      });
+
+      const payload = await response.json();
+
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Unable to send your message right now.');
+      }
+
+      setFormState(initialFormState);
+      setFeedback({ type: 'success', message: 'Thank you. Your message has been sent.' });
+    } catch (error) {
+      setFeedback({
+        type: 'error',
+        message: error?.message || 'Unable to send your message right now.',
+      });
+    } finally {
+      setIsSending(false);
+    }
+  };
 
   return (
     <>
       <SEO
         title="Contact KIVARI Construction | Midrand, Gauteng"
-        description="Get a free quote from KIVARI Construction. Based in Midrand, Gauteng — serving clients across South Africa."
+        description="Get a free quote from KIVARI Construction. Based in Midrand, Gauteng - serving clients across South Africa."
         url={`${siteUrl}/contact`}
         image="/images/about/aboutus.jpg"
       />
 
-      {/* LocalBusiness JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -47,7 +102,6 @@ export default function ContactPage() {
 
       <MainHeader />
 
-      {/* Hero */}
       <section
         className="relative h-[50vh] min-h-[400px] bg-fixed bg-cover bg-center flex items-center justify-center text-white"
         style={{ backgroundImage: "url('/images/breadcrumb.jpg')", backgroundPosition: 'center 30%' }}
@@ -72,10 +126,8 @@ export default function ContactPage() {
         </motion.div>
       </section>
 
-      {/* Contact */}
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-start">
-          {/* Details */}
           <motion.div
             className="space-y-8"
             initial={{ opacity: 0, x: -20 }}
@@ -119,7 +171,10 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="font-bold text-gray-800 mb-2">Email</h3>
-                <a href={`mailto:${displayEmail}`} className="text-gray-600 hover:text-[#A9CF45] transition-colors block mb-1">
+                <a
+                  href={`mailto:${displayEmail}`}
+                  className="text-gray-600 hover:text-[#A9CF45] transition-colors block mb-1"
+                >
                   {displayEmail}
                 </a>
                 <a href={`mailto:${displayEmail}`} className="text-gray-600 hover:text-[#A9CF45] transition-colors block">
@@ -129,16 +184,26 @@ export default function ContactPage() {
             </motion.div>
           </motion.div>
 
-          {/* Form */}
           <motion.form
             className="bg-gray-50 p-8 rounded-xl border border-gray-200"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
           >
             <h2 className="text-2xl font-bold text-gray-800 mb-6">Send us a message</h2>
+
+            <input
+              type="text"
+              name="company"
+              value={formState.company}
+              onChange={handleChange}
+              className="hidden"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
 
             <div className="grid md:grid-cols-2 gap-4 mb-4">
               <div className="relative">
@@ -147,6 +212,9 @@ export default function ContactPage() {
                 </div>
                 <input
                   type="text"
+                  name="name"
+                  value={formState.name}
+                  onChange={handleChange}
                   placeholder="Your Name"
                   className="w-full pl-10 pr-4 py-3 text-gray-700 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#A9CF45] focus:border-transparent outline-none transition-all"
                   required
@@ -158,6 +226,9 @@ export default function ContactPage() {
                 </div>
                 <input
                   type="email"
+                  name="email"
+                  value={formState.email}
+                  onChange={handleChange}
                   placeholder="Your Email"
                   className="w-full pl-10 pr-4 py-3 text-gray-700 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#A9CF45] focus:border-transparent outline-none transition-all"
                   required
@@ -171,6 +242,9 @@ export default function ContactPage() {
               </div>
               <input
                 type="text"
+                name="subject"
+                value={formState.subject}
+                onChange={handleChange}
                 placeholder="Subject"
                 className="w-full pl-10 pr-4 py-3 text-gray-700 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#A9CF45] focus:border-transparent outline-none transition-all"
               />
@@ -178,6 +252,9 @@ export default function ContactPage() {
 
             <div className="mb-6">
               <textarea
+                name="message"
+                value={formState.message}
+                onChange={handleChange}
                 placeholder="Your Message"
                 className="w-full px-4 py-3 text-gray-700 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#A9CF45] focus:border-transparent outline-none transition-all resize-none"
                 rows="5"
@@ -185,19 +262,25 @@ export default function ContactPage() {
               />
             </div>
 
+            {feedback.message ? (
+              <p className={`mb-4 text-sm ${feedback.type === 'success' ? 'text-green-700' : 'text-red-600'}`}>
+                {feedback.message}
+              </p>
+            ) : null}
+
             <motion.button
               type="submit"
-              className="w-full bg-gradient-to-r from-[#A9CF45] to-[#8ab733] hover:from-[#8ab733] hover:to-[#7aa82d] text-black px-6 py-3 rounded-lg font-semibold border border-[#A9CF45]/30 transition-all duration-300 flex items-center justify-center gap-2"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              disabled={isSending}
+              className="w-full bg-gradient-to-r from-[#A9CF45] to-[#8ab733] hover:from-[#8ab733] hover:to-[#7aa82d] text-black px-6 py-3 rounded-lg font-semibold border border-[#A9CF45]/30 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+              whileHover={{ scale: isSending ? 1 : 1.02 }}
+              whileTap={{ scale: isSending ? 1 : 0.98 }}
             >
-              <FiSend size={18} /> Send Message
+              <FiSend size={18} /> {isSending ? 'Sending...' : 'Send Message'}
             </motion.button>
           </motion.form>
         </div>
       </section>
 
-      {/* Map */}
       <section className="bg-gray-100 py-0">
         <div className="w-full h-96">
           <iframe

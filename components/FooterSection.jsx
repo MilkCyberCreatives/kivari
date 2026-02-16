@@ -1,11 +1,53 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 
 export default function FooterSection() {
   const displayEmail = process.env.NEXT_PUBLIC_DISPLAY_EMAIL || "info1.kivari@gmail.com";
+  const [quickForm, setQuickForm] = useState({ name: '', phone: '', company: '' });
+  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState('');
+
+  const handleQuickChange = (event) => {
+    const { name, value } = event.target;
+    setQuickForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleQuickSubmit = async (event) => {
+    event.preventDefault();
+    if (isSending) return;
+
+    setIsSending(true);
+    setStatus('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          formType: 'quick-inquiry',
+          name: quickForm.name,
+          phone: quickForm.phone,
+          company: quickForm.company,
+          message: 'Callback requested from footer quick inquiry form.',
+        }),
+      });
+
+      const payload = await response.json();
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Unable to submit request right now.');
+      }
+
+      setQuickForm({ name: '', phone: '', company: '' });
+      setStatus('Request received. We will call you soon.');
+    } catch (error) {
+      setStatus(error?.message || 'Unable to submit request right now.');
+    } finally {
+      setIsSending(false);
+    }
+  };
 
   const socials = [
     { href: 'https://facebook.com/kivari', Icon: FaFacebookF, label: 'Facebook' },
@@ -93,23 +135,43 @@ export default function FooterSection() {
         {/* Mini form (static) */}
         <div>
           <h4 className="text-lg font-semibold mb-4">Quick Inquiry</h4>
-          <form className="space-y-3">
+          <form className="space-y-3" onSubmit={handleQuickSubmit}>
             <input
               type="text"
+              name="company"
+              value={quickForm.company}
+              onChange={handleQuickChange}
+              className="hidden"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
+            <input
+              type="text"
+              name="name"
+              value={quickForm.name}
+              onChange={handleQuickChange}
               placeholder="Name"
               className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white placeholder:text-gray-400 focus:border-[#A9CF45] focus:outline-none"
+              required
             />
             <input
               type="tel"
+              name="phone"
+              value={quickForm.phone}
+              onChange={handleQuickChange}
               placeholder="Phone"
               className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white placeholder:text-gray-400 focus:border-[#A9CF45] focus:outline-none"
+              required
             />
             <button
-              type="button"
+              type="submit"
+              disabled={isSending}
               className="w-full rounded-lg bg-[#A9CF45] px-4 py-2 text-sm font-semibold text-gray-900 hover:opacity-90 transition"
             >
-              Request Callback
+              {isSending ? 'Sending...' : 'Request Callback'}
             </button>
+            {status ? <p className="text-xs text-gray-400">{status}</p> : null}
           </form>
         </div>
       </div>
