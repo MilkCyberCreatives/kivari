@@ -65,7 +65,9 @@ export default function MainHeader() {
     <header
       role="banner"
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled
+        isHome
+          ? "header-water bg-transparent text-white"
+          : scrolled
           ? "header-water bg-white/90 backdrop-blur-md border-b border-gray-200/70 text-gray-800"
           : "header-water bg-transparent text-white"
       }`}
@@ -94,7 +96,7 @@ export default function MainHeader() {
             >
               {/* Use Next/Image to avoid layout shift & enable AVIF/WebP */}
               <Image
-                src={scrolled ? "/logo2.svg" : "/logo.svg"}
+                src={isHome ? "/logo.svg" : scrolled ? "/logo2.svg" : "/logo.svg"}
                 alt="KIVARI Logo"
                 width={160}
                 height={64}
