@@ -6,8 +6,10 @@ const nextConfig = {
   },
   images: {
     // Add external domains here if you ever load remote images
-    domains: []
-  }
+    domains: [],
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 2678400,
+  },
 };
 
 module.exports = nextConfig;

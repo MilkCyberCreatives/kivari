@@ -67,7 +67,7 @@ export default function ContactCTA() {
     <section
       id="contact-cta"
       className="relative bg-cover bg-center py-28 md:py-32 text-white overflow-hidden"
-      style={{ backgroundImage: "url('/images/cta/cta-bg.jpg')" }}
+      style={{ backgroundImage: "url('/images/cta/cta-bg-opt.webp')" }}
       aria-label="Work with KIVARI"
     >
       {/* Background Overlay */}

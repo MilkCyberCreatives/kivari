@@ -34,9 +34,9 @@ const toSlug = (value) =>
  * ---------------------------- */
 const BreadcrumbHero = ({ title, subtitle }) => (
   <motion.section
-    className="relative h-[50vh] min-h-[400px] bg-fixed bg-cover bg-center flex items-center justify-center text-white"
+    className="relative h-[50vh] min-h-[400px] bg-cover bg-center flex items-center justify-center text-white"
     style={{
-      backgroundImage: "url('/images/breadcrumb.jpg')",
+      backgroundImage: "url('/images/breadcrumb-opt.webp')",
       backgroundPosition: "center 30%",
     }}
     initial={{ opacity: 0 }}
@@ -90,6 +90,8 @@ const ServiceCard = ({ image, title, description, icon, slug }) => (
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         priority={false}
+        loading="lazy"
+        quality={66}
       />
       <div
         className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent"
@@ -118,70 +120,70 @@ const services = [
     title: "Residential Building Construction",
     description:
       "Full-service residential construction, including houses, apartments, and estates, from concept to completion.",
-    image: "/images/services/residential.jpg",
+    image: "/images/services/residential-opt.webp",
     icon: <FaHome className="text-xl" />,
   },
   {
     title: "Civil Engineering & Infrastructure",
     description:
       "Execution of civil works including road construction, stormwater systems, drainage, and structural foundations.",
-    image: "/images/services/civil.jpg",
+    image: "/images/services/civil-opt.webp",
     icon: <FaRoad className="text-xl" />,
   },
   {
     title: "Site Preparation & Earthworks",
     description:
       "Land clearing, levelling, excavation, trenching, and compaction to ready sites for development.",
-    image: "/images/services/earthworks.jpg",
+    image: "/images/services/earthworks-opt.webp",
     icon: <FaTools className="text-xl" />,
   },
   {
     title: "Renovations & Extensions",
     description:
       "Upgrades, modernizations, and structural expansions for homes and properties.",
-    image: "/images/services/renovations.jpg",
+    image: "/images/services/renovations-opt.webp",
     icon: <FaBuilding className="text-xl" />,
   },
   {
     title: "Painting, Plastering & Finishes",
     description:
       "Interior and exterior painting, plastering, and decorative coatings delivered to premium standards.",
-    image: "/images/services/painting.jpg",
+    image: "/images/services/painting-opt.webp",
     icon: <FaPaintRoller className="text-xl" />,
   },
   {
     title: "Roof Maintenance and Waterproofing",
     description:
       "Expert roofing services including maintenance, leak repairs, and waterproofing to protect your property.",
-    image: "/images/services/waterproofing.jpg",
+    image: "/images/services/waterproofing-opt.webp",
     icon: <FaShieldAlt className="text-xl" />,
   },
   {
     title: "Scanning and Coring",
     description:
       "Detect embedded rebar and conduits to ensure safe modifications with accurate scanning and coring.",
-    image: "/images/services/scanning.jpg",
+    image: "/images/services/scanning-opt.webp",
     icon: <FaSearch className="text-xl" />,
   },
   {
     title: "Scaffolding & Safety Systems",
     description:
       "Erection of compliant scaffolding and protective site systems to ensure safe project execution.",
-    image: "/images/services/scaffolding.jpg",
+    image: "/images/services/scaffolding-opt.webp",
     icon: <FaTruck className="text-xl" />,
   },
   {
     title: "Project Planning & Site Supervision",
     description:
       "End-to-end project management, leadership, quality control, and schedule tracking.",
-    image: "/images/services/project-planning.jpg",
+    image: "/images/services/project-planning-opt.webp",
     icon: <FaClipboardCheck className="text-xl" />,
   },
   {
     title: "General Maintenance & Repairs",
     description:
       "Ongoing property maintenance including structural, electrical, and plumbing repairs.",
-    image: "/images/services/maintenance.jpg",
+    image: "/images/services/maintenance-opt.webp",
     icon: <FaWrench className="text-xl" />,
   },
 ];
@@ -248,7 +250,7 @@ export default function ServicesPage() {
 
       <Head>
         {/* Preload hero for faster LCP on this page */}
-        <link rel="preload" href="/images/breadcrumb.jpg" as="image" />
+        <link rel="preload" href="/images/breadcrumb-opt.webp" as="image" />
         {/* JSON-LD */}
         <script
           type="application/ld+json"
@@ -293,8 +295,8 @@ export default function ServicesPage() {
 
         {/* CTA */}
         <motion.section
-          className="relative py-24 bg-fixed bg-cover bg-center text-white"
-          style={{ backgroundImage: "url('/images/cta/cta-bg.jpg')" }}
+          className="relative py-24 bg-cover bg-center text-white"
+          style={{ backgroundImage: "url('/images/cta/cta-bg-opt.webp')" }}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}

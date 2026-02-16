@@ -44,8 +44,8 @@ export default function AboutPage() {
 
       {/* Hero */}
       <motion.section
-        className="relative h-[50vh] min-h-[400px] bg-fixed bg-cover bg-center flex items-center justify-center text-white"
-        style={{ backgroundImage: "url('/images/breadcrumb.jpg')", backgroundPosition: 'center 30%' }}
+        className="relative h-[50vh] min-h-[400px] bg-cover bg-center flex items-center justify-center text-white"
+        style={{ backgroundImage: "url('/images/breadcrumb-opt.webp')", backgroundPosition: 'center 30%' }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -112,12 +112,13 @@ export default function AboutPage() {
             variants={{ hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8 } } }}
           >
             <Image
-              src="/images/about/aboutus.jpg"
+              src="/images/about/aboutus-opt.webp"
               alt="About KIVARI"
               width={800}
               height={500}
               className="w-full h-auto object-cover transition-transform duration-700 hover:scale-105"
-              priority
+              loading="lazy"
+              quality={70}
             />
             <div className="absolute inset-0 border-4 border-white/20 rounded-xl pointer-events-none" />
           </motion.div>
@@ -194,8 +195,8 @@ export default function AboutPage() {
 
       {/* CTA */}
       <motion.section
-        className="relative py-24 bg-fixed bg-cover bg-center text-white"
-        style={{ backgroundImage: "url('/images/cta/cta-bg.jpg')" }}
+        className="relative py-24 bg-cover bg-center text-white"
+        style={{ backgroundImage: "url('/images/cta/cta-bg-opt.webp')" }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}

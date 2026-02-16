@@ -106,7 +106,6 @@ export default function MainHeader() {
                 alt="KIVARI Logo"
                 width={160}
                 height={64}
-                priority
                 className="h-10 sm:h-12 w-auto md:hidden"
               />
               <Image
@@ -114,7 +113,6 @@ export default function MainHeader() {
                 alt="KIVARI Logo"
                 width={160}
                 height={64}
-                priority
                 className="hidden md:block h-16 w-auto"
               />
             </motion.div>

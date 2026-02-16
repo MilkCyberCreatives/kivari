@@ -7,32 +7,32 @@ import { FaExpand, FaTimes } from "react-icons/fa";
 
 const galleryImages = [
   {
-    src: "/images/gallery/img1.jpg",
+    src: "/images/gallery/img1-opt.webp",
     title: "Residential Complex",
     description: "Modern apartment building with sustainable design features",
   },
   {
-    src: "/images/gallery/img2.jpg",
+    src: "/images/gallery/img2-opt.webp",
     title: "Commercial Development",
     description: "Office space with innovative architectural elements",
   },
   {
-    src: "/images/gallery/img3.jpg",
+    src: "/images/gallery/img3-opt.webp",
     title: "Infrastructure Project",
     description: "Road construction with precision engineering",
   },
   {
-    src: "/images/gallery/img4.jpg",
+    src: "/images/gallery/img4-opt.webp",
     title: "Renovation Work",
     description: "Historic building restoration preserving original character",
   },
   {
-    src: "/images/gallery/img5.jpg",
+    src: "/images/gallery/img5-opt.webp",
     title: "Landscaping Project",
     description: "Outdoor spaces designed for functionality and beauty",
   },
   {
-    src: "/images/gallery/img6.jpg",
+    src: "/images/gallery/img6-opt.webp",
     title: "Interior Finishing",
     description: "High-quality craftsmanship in every detail",
   },
@@ -172,6 +172,7 @@ export default function PhotoGallerySection() {
                   className="w-full h-64 sm:h-80 object-cover transition-transform duration-500 group-hover:scale-110"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   loading="lazy"
+                  quality={66}
                 />
 
                 {/* Overlay */}
@@ -236,6 +237,7 @@ export default function PhotoGallerySection() {
                           className="w-full h-full object-contain"
                           sizes="90vw"
                           priority
+                          quality={70}
                         />
 
                         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">

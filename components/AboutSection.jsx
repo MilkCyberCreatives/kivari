@@ -54,12 +54,13 @@ export default function AboutSection() {
         aria-hidden="true"
       >
         <Image
-          src="/images/bg-construction-blueprint.png"
+          src="/images/bg-construction-blueprint-opt.webp"
           alt=""
           width={500}
           height={500}
           className="object-contain"
           loading="lazy"
+          quality={65}
           sizes="(max-width: 1024px) 40vw, 500px"
         />
       </motion.div>
@@ -91,13 +92,14 @@ export default function AboutSection() {
               transition={{ duration: 0.8 }}
             >
               <Image
-                src="/images/about-kivari.jpg"
+                src="/images/about-kivari-opt.webp"
                 alt="KIVARI team delivering quality residential construction"
                 width={800}
                 height={600}
                 className="rounded-xl w-full h-auto transition-transform duration-1000 group-hover:scale-105"
                 // Not LCP-critical; keep lazy to save bandwidth
                 loading="lazy"
+                quality={68}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
               />
             </motion.div>

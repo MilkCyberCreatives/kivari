@@ -121,8 +121,8 @@ export default function ContactPage() {
       <MainHeader />
 
       <section
-        className="relative h-[50vh] min-h-[400px] bg-fixed bg-cover bg-center flex items-center justify-center text-white"
-        style={{ backgroundImage: "url('/images/breadcrumb.jpg')", backgroundPosition: 'center 30%' }}
+        className="relative h-[50vh] min-h-[400px] bg-cover bg-center flex items-center justify-center text-white"
+        style={{ backgroundImage: "url('/images/breadcrumb-opt.webp')", backgroundPosition: 'center 30%' }}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent" />
         <motion.div

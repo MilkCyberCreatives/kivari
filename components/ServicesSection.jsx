@@ -19,35 +19,35 @@ const services = [
     title: "Residential Building Construction",
     description:
       "Full-service residential construction, including houses, apartments, and estates, from concept to completion.",
-    image: "/images/services/residential.jpg",
+    image: "/images/services/residential-opt.webp",
     features: ["Custom home building", "Multi-family units", "Turnkey solutions"],
   },
   {
     title: "Civil Engineering & Infrastructure",
     description:
       "Execution of civil works including road construction, stormwater systems, drainage, and structural foundations.",
-    image: "/images/services/civil.jpg",
+    image: "/images/services/civil-opt.webp",
     features: ["Road construction", "Drainage systems", "Structural engineering"],
   },
   {
     title: "Site Preparation & Earthworks",
     description:
       "Land clearing, levelling, excavation, trenching, and compaction to ready sites for development.",
-    image: "/images/services/earthworks.jpg",
+    image: "/images/services/earthworks-opt.webp",
     features: ["Land clearing", "Excavation", "Site grading"],
   },
   {
     title: "Renovations & Extensions",
     description:
       "Upgrades, modernizations, and structural expansions for homes and properties.",
-    image: "/images/services/renovations.jpg",
+    image: "/images/services/renovations-opt.webp",
     features: ["Home additions", "Structural upgrades", "Modernizations"],
   },
   {
     title: "Painting, Plastering & Finishes",
     description:
       "Interior and exterior painting, plastering, and decorative coatings delivered to premium standards.",
-    image: "/images/services/painting.jpg",
+    image: "/images/services/painting-opt.webp",
     features: ["Residential painting", "Commercial painting", "Finishes"],
   },
 ];
@@ -134,7 +134,7 @@ export default function ServicesSection() {
                     alt={`${service.title} – ${service.description}`}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    quality={80}
+                    quality={66}
                     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                     loading="lazy"
                   />
