@@ -108,7 +108,7 @@
 
   .header-water {
     isolation: isolate;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .header-water::after {

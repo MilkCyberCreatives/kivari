@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { FaBars, FaTimes, FaPhone, FaEnvelope } from "react-icons/fa";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import MobileNav from "./MobileNav";
 
 export default function MainHeader() {
@@ -69,14 +69,15 @@ export default function MainHeader() {
   const wiggle = reduceMotion ? {} : { x: [0, 2, 0] };
 
   return (
-    <header
-      role="banner"
-      className={`fixed top-0 left-0 w-full z-50 overflow-visible transition-all duration-500 header-water ${
-        solidHeader
-          ? "bg-white/95 backdrop-blur-md border-b border-gray-200/80 text-gray-900"
-          : "bg-white/95 backdrop-blur-md border-b border-gray-200/80 text-gray-900 md:bg-transparent md:backdrop-blur-0 md:border-transparent md:text-white"
-      }`}
-    >
+    <>
+      <header
+        role="banner"
+        className={`fixed top-0 left-0 w-full z-50 overflow-visible transition-all duration-500 header-water ${
+          solidHeader
+            ? "bg-white/95 backdrop-blur-md border-b border-gray-200/80 text-gray-900"
+            : "bg-white/95 backdrop-blur-md border-b border-gray-200/80 text-gray-900 md:bg-transparent md:backdrop-blur-0 md:border-transparent md:text-white"
+        }`}
+      >
       {/* Skip link for accessibility */}
       <a
         href="#main"
@@ -206,22 +207,19 @@ export default function MainHeader() {
           {menuOpen ? <FaTimes className="text-[2rem]" /> : <FaBars className="text-[2rem]" />}
         </motion.button>
 
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {menuOpen && (
-            <MobileNav
-              id="mobile-navigation"
-              menuOpen={menuOpen}
-              setMenuOpen={setMenuOpen}
-              navItems={navItems}
-              phone="+27719020281"
-              email={displayEmail}
-              brandColor="#A9CF45"
-            />
-          )}
-        </AnimatePresence>
       </div>
-    </header>
+      </header>
+
+      <MobileNav
+        id="mobile-navigation"
+        menuOpen={menuOpen}
+        setMenuOpen={setMenuOpen}
+        navItems={navItems}
+        phone="+27719020281"
+        email={displayEmail}
+        brandColor="#A9CF45"
+      />
+    </>
   );
 }
 
