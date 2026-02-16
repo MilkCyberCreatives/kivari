@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { FaPhone, FaEnvelope } from "react-icons/fa";
+import { createPortal } from "react-dom";
 
 /**
  * Props
@@ -33,6 +34,11 @@ export default function MobileNav({
   const reduceMotion = useReducedMotion();
   const firstLinkRef = useRef(null);
   const containerRef = useRef(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Body scroll lock & initial focus
   useEffect(() => {
@@ -101,101 +107,98 @@ export default function MobileNav({
 
   const telHref = `tel:${phone.replace(/\s+/g, "")}`;
 
-  return (
-    <AnimatePresence>
-      {menuOpen && (
-        <>
-          {/* Backdrop */}
-          <motion.div
-            key="backdrop"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.4 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black z-[60] md:hidden"
-            onClick={() => setMenuOpen(false)}
-            aria-hidden="true"
-          />
+  if (!mounted || !menuOpen) return null;
 
-          {/* Panel */}
-          <motion.div
-            key="panel"
-            ref={containerRef}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={`${id}-title`}
-            id={id}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={containerVariants}
-            className="md:hidden fixed inset-x-0 top-14 sm:top-16 bottom-0 bg-white/95 backdrop-blur-sm z-[70] pt-3 px-5 overflow-y-auto"
-          >
-            {/* Title for a11y (visually hidden) */}
-            <h2 id={`${id}-title`} className="sr-only">
-              Mobile navigation
-            </h2>
+  return createPortal(
+    <>
+      {/* Backdrop */}
+      <motion.div
+        key="backdrop"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.4 }}
+        className="fixed inset-0 bg-black z-[100] md:hidden"
+        onClick={() => setMenuOpen(false)}
+        aria-hidden="true"
+      />
 
-            {/* Links */}
-            <motion.nav
-              aria-label="Mobile primary"
-              variants={containerVariants}
-              className="flex flex-col space-y-3"
-            >
-              {navItems.map((item, i) => (
-                <motion.div key={item.name} variants={itemVariants}>
-                  <Link
-                    href={item.href}
-                    className="block py-3 px-4 text-gray-800 hover:text-[#A9CF45] hover:bg-gray-50 rounded-lg transition-all duration-300 font-medium text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45]"
-                    onClick={() => setMenuOpen(false)}
-                    ref={i === 0 ? firstLinkRef : undefined}
-                  >
-                    {item.name}
-                  </Link>
-                </motion.div>
-              ))}
-            </motion.nav>
+      {/* Panel */}
+      <motion.div
+        key="panel"
+        ref={containerRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={`${id}-title`}
+        id={id}
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        className="md:hidden fixed inset-x-0 top-14 sm:top-16 bottom-0 bg-white/95 backdrop-blur-sm z-[110] pt-3 px-5 overflow-y-auto"
+      >
+        {/* Title for a11y (visually hidden) */}
+        <h2 id={`${id}-title`} className="sr-only">
+          Mobile navigation
+        </h2>
 
-            {/* Contact */}
-            <motion.div variants={itemVariants} className="mt-8 border-t border-gray-100 pt-6">
-              <div className="space-y-4">
-                <a
-                  href={telHref}
-                  className="flex items-center gap-3 text-gray-800 hover:text-[#A9CF45] transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] rounded-md"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  <span className="bg-gray-100 p-3 rounded-full" aria-hidden="true">
-                    <FaPhone className="text-[#A9CF45]" />
-                  </span>
-                  <span className="font-medium">{phone.replace(/\s+/g, " ")}</span>
-                </a>
-
-                <a
-                  href={`mailto:${email}`}
-                  className="flex items-center gap-3 text-gray-800 hover:text-[#A9CF45] transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] rounded-md"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  <span className="bg-gray-100 p-3 rounded-full" aria-hidden="true">
-                    <FaEnvelope className="text-[#A9CF45]" />
-                  </span>
-                  <span className="font-medium">{email}</span>
-                </a>
-              </div>
-            </motion.div>
-
-            {/* CTA */}
-            <motion.div variants={itemVariants} className="mt-8 mb-12" whileTap={{ scale: 0.96 }}>
+        {/* Links */}
+        <motion.nav
+          aria-label="Mobile primary"
+          variants={containerVariants}
+          className="flex flex-col space-y-3"
+        >
+          {navItems.map((item, i) => (
+            <motion.div key={item.name} variants={itemVariants}>
               <Link
-                href="/contact"
+                href={item.href}
+                className="block py-3 px-4 text-gray-800 hover:text-[#A9CF45] hover:bg-gray-50 rounded-lg transition-all duration-300 font-medium text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45]"
                 onClick={() => setMenuOpen(false)}
-                style={brandGradStyle}
-                className="block w-full text-black text-center px-6 py-3 rounded-xl font-semibold border border-[#A9CF45]/30 transition-all duration-300 text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45]"
+                ref={i === 0 ? firstLinkRef : undefined}
               >
-                Request Consultation
+                {item.name}
               </Link>
             </motion.div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+          ))}
+        </motion.nav>
+
+        {/* Contact */}
+        <motion.div variants={itemVariants} className="mt-8 border-t border-gray-100 pt-6">
+          <div className="space-y-4">
+            <a
+              href={telHref}
+              className="flex items-center gap-3 text-gray-800 hover:text-[#A9CF45] transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] rounded-md"
+              onClick={() => setMenuOpen(false)}
+            >
+              <span className="bg-gray-100 p-3 rounded-full" aria-hidden="true">
+                <FaPhone className="text-[#A9CF45]" />
+              </span>
+              <span className="font-medium">{phone.replace(/\s+/g, " ")}</span>
+            </a>
+
+            <a
+              href={`mailto:${email}`}
+              className="flex items-center gap-3 text-gray-800 hover:text-[#A9CF45] transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] rounded-md"
+              onClick={() => setMenuOpen(false)}
+            >
+              <span className="bg-gray-100 p-3 rounded-full" aria-hidden="true">
+                <FaEnvelope className="text-[#A9CF45]" />
+              </span>
+              <span className="font-medium">{email}</span>
+            </a>
+          </div>
+        </motion.div>
+
+        {/* CTA */}
+        <motion.div variants={itemVariants} className="mt-8 mb-12" whileTap={{ scale: 0.96 }}>
+          <Link
+            href="/contact"
+            onClick={() => setMenuOpen(false)}
+            style={brandGradStyle}
+            className="block w-full text-black text-center px-6 py-3 rounded-xl font-semibold border border-[#A9CF45]/30 transition-all duration-300 text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45]"
+          >
+            Request Consultation
+          </Link>
+        </motion.div>
+      </motion.div>
+    </>,
+    document.body
   );
 }
