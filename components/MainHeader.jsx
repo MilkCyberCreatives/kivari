@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -10,11 +10,14 @@ import MobileNav from "./MobileNav";
 
 export default function MainHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const router = useRouter();
+  const rafId = useRef(null);
   const reduceMotion = useReducedMotion();
   const displayEmail = (process.env.NEXT_PUBLIC_DISPLAY_EMAIL || "info1.kivari@gmail.com").trim();
   const isHome = router.pathname === "/";
-  const isLightHeader = isHome;
+  const solidHeader = !isHome || scrolled;
+  const isLightHeader = !solidHeader;
   const contactIconClass = isLightHeader
     ? "water-hover rounded-full border-2 border-white/60 p-2 hover:border-[#A9CF45] hover:bg-[#A9CF45]/10"
     : "water-hover rounded-full border-2 border-gray-300 p-2 hover:border-[#A9CF45] hover:bg-[#A9CF45]/12";
@@ -26,6 +29,25 @@ export default function MainHeader() {
     router.events.on("routeChangeComplete", handleRoute);
     return () => router.events.off("routeChangeComplete", handleRoute);
   }, [router.events]);
+
+  // White header as soon as user starts scrolling on home.
+  useEffect(() => {
+    const onScroll = () => {
+      if (rafId.current) return;
+      rafId.current = requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 6);
+        rafId.current = null;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -49,8 +71,10 @@ export default function MainHeader() {
   return (
     <header
       role="banner"
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 header-water bg-transparent ${
-        isLightHeader ? "text-white" : "text-gray-900"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 header-water ${
+        solidHeader
+          ? "bg-white/95 backdrop-blur-md border-b border-gray-200/80 text-gray-900"
+          : "bg-transparent text-white"
       }`}
     >
       {/* Skip link for accessibility */}
@@ -77,7 +101,7 @@ export default function MainHeader() {
             >
               {/* Use Next/Image to avoid layout shift & enable AVIF/WebP */}
               <Image
-                src={isLightHeader ? "/logo.svg" : "/logo2.svg"}
+                src={solidHeader ? "/logo2.svg" : "/logo.svg"}
                 alt="KIVARI Logo"
                 width={160}
                 height={64}
