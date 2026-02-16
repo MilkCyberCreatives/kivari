@@ -58,7 +58,21 @@ export default function ScrollToTopButton() {
                   }
             }
           >
-            <FaArrowUp className="text-2xl" />
+            {!reduceMotion ? (
+              <motion.span
+                aria-hidden="true"
+                className="absolute inset-0 rounded-full border border-[#A9CF45]/40"
+                animate={{ scale: [1, 1.16, 1], opacity: [0.5, 0, 0.5] }}
+                transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+              />
+            ) : null}
+
+            <motion.span
+              animate={reduceMotion ? {} : { y: [0, -3, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <FaArrowUp className="text-2xl" />
+            </motion.span>
 
             {/* Tooltip */}
             <motion.span

@@ -1,11 +1,12 @@
 'use client';
+
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 
 export default function FooterSection() {
-  const displayEmail = (process.env.NEXT_PUBLIC_DISPLAY_EMAIL || "info1.kivari@gmail.com").trim();
+  const displayEmail = (process.env.NEXT_PUBLIC_DISPLAY_EMAIL || 'info1.kivari@gmail.com').trim();
   const [quickForm, setQuickForm] = useState({ name: '', phone: '', company: '' });
   const [isSending, setIsSending] = useState(false);
   const [status, setStatus] = useState('');
@@ -66,16 +67,9 @@ export default function FooterSection() {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-        {/* Brand */}
         <div>
           <Link href="/" className="inline-block">
-            <Image
-              src="/logo.svg"
-              width={180}
-              height={58}
-              alt="KIVARI logo"
-              priority
-            />
+            <Image src="/logo.svg" width={180} height={58} alt="KIVARI logo" priority />
           </Link>
           <p className="mt-4 text-sm text-gray-400">
             KIVARI delivers quality construction solutions across South Africa.
@@ -97,16 +91,12 @@ export default function FooterSection() {
           </div>
         </div>
 
-        {/* Links */}
         <div>
           <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
           <ul className="space-y-3">
             {links.map(({ href, label }) => (
               <li key={href}>
-                <Link
-                  href={href}
-                  className="text-sm text-gray-400 hover:text-[#A9CF45] transition"
-                >
+                <Link href={href} className="text-sm text-gray-400 hover:text-[#A9CF45] transition">
                   {label}
                 </Link>
               </li>
@@ -114,7 +104,6 @@ export default function FooterSection() {
           </ul>
         </div>
 
-        {/* Contact */}
         <div>
           <h4 className="text-lg font-semibold mb-4">Contact</h4>
           <ul className="space-y-3 text-sm text-gray-400">
@@ -132,7 +121,6 @@ export default function FooterSection() {
           </ul>
         </div>
 
-        {/* Mini form (static) */}
         <div>
           <h4 className="text-lg font-semibold mb-4">Quick Inquiry</h4>
           <form className="space-y-3" onSubmit={handleQuickSubmit}>
@@ -177,15 +165,29 @@ export default function FooterSection() {
       </div>
 
       <div className="border-t border-gray-800">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between text-sm text-gray-500">
-          <p>© {new Date().getFullYear()} KIVARI (Pty) Ltd. All rights reserved.</p>
-          <div className="mt-3 md:mt-0 flex gap-6">
-            <Link href="/privacy-policy" className="hover:text-[#A9CF45]">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-[#A9CF45]">Terms of Service</Link>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-gray-500">
+          <p>&copy; {new Date().getFullYear()} KIVARI (Pty) Ltd. All rights reserved.</p>
+          <p className="text-center">
+            Designed and developed by{' '}
+            <a
+              href="https://milkcybercreatives.co.za/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#A9CF45] hover:text-[#c5e76b]"
+            >
+              Milk Cyber Creatives
+            </a>
+          </p>
+          <div className="flex gap-6">
+            <Link href="/privacy-policy" className="hover:text-[#A9CF45]">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-[#A9CF45]">
+              Terms of Service
+            </Link>
           </div>
         </div>
       </div>
     </footer>
   );
 }
-

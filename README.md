@@ -4,8 +4,7 @@ Production website for KIVARI (Pty) Ltd built with Next.js (Pages Router) and Ta
 
 ## Key Features
 - Premium responsive UI with smooth scroll and motion effects
-- Dedicated search page and search API (`/search`, `/api/search`)
-- SEO, AEO, and GEO foundations (schema, SearchAction, FAQ schema, llms.txt)
+- SEO, AEO, and GEO foundations (schema, FAQ schema, llms.txt)
 - Functional contact forms with SMTP delivery (`/api/contact`)
 - Google Analytics 4 and Google Tag Manager integration hooks
 

@@ -36,7 +36,6 @@
 - About: https://www.kivari.co.za/about
 - Services: https://www.kivari.co.za/services
 - Contact: https://www.kivari.co.za/contact
-- Search: https://www.kivari.co.za/search
 
 ## Preferred Citation
 When referencing this company, use the canonical domain `https://www.kivari.co.za` and identify the business as `KIVARI Construction` or `KIVARI (Pty) Ltd`.

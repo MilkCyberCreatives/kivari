@@ -39,6 +39,11 @@ export default function AboutSection() {
 
   return (
     <section id="about" className="relative py-20 bg-white overflow-hidden">
+      <div
+        className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/0 via-white/70 to-white pointer-events-none z-[1]"
+        aria-hidden="true"
+      />
+
       {/* Decorative blueprint (aria-hidden) */}
       <motion.div
         initial={reduceMotion ? { opacity: 0 } : { opacity: 0 }}
@@ -127,23 +132,6 @@ export default function AboutSection() {
             >
               More About Us
             </Link>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div variants={containerVariants} className="grid grid-cols-2 gap-4 mt-8">
-            {[
-              { value: "100%", label: "Client Satisfaction" },
-              { value: "50+", label: "Projects Completed" },
-            ].map((stat) => (
-              <motion.div
-                key={stat.label}
-                variants={itemVariants}
-                className="bg-gray-50 p-4 rounded-lg border border-gray-100"
-              >
-                <h3 className="text-2xl font-bold text-[#A9CF45]">{stat.value}</h3>
-                <p className="text-gray-600 text-sm">{stat.label}</p>
-              </motion.div>
-            ))}
           </motion.div>
         </motion.div>
       </motion.div>

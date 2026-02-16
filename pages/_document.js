@@ -25,6 +25,10 @@ export default function Document() {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content={siteName} />
+        <meta
+          name="google-site-verification"
+          content="su6vC9r-DOW9UbMsjkMP1AB3jX1TvZS3113mi6VRu30"
+        />
 
         {/* AI and search discoverability */}
         <link rel="alternate" type="text/plain" href={`${siteUrl}/llms.txt`} />

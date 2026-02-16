@@ -44,7 +44,6 @@ export default function MainHeader() {
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
     { name: "Services", href: "/services" },
-    { name: "Search", href: "/search" },
     { name: "Projects", href: "#projects" },
     { name: "Contact", href: "/contact" },
   ];
@@ -65,8 +64,8 @@ export default function MainHeader() {
       role="banner"
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-md border-b border-gray-200/70 text-gray-800"
-          : "bg-transparent text-white"
+          ? "header-water bg-white/90 backdrop-blur-md border-b border-gray-200/70 text-gray-800"
+          : "header-water bg-transparent text-white"
       }`}
     >
       {/* Skip link for accessibility */}
@@ -77,7 +76,7 @@ export default function MainHeader() {
         Skip to content
       </a>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 md:py-4 flex items-center justify-between gap-6">
         {/* Logo */}
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, x: -20 }}
@@ -106,7 +105,7 @@ export default function MainHeader() {
 
         {/* Desktop Navigation */}
         <nav
-          className="hidden md:flex items-center gap-6"
+          className="hidden md:flex items-center gap-4 lg:gap-6"
           aria-label="Primary navigation"
           role="navigation"
         >
@@ -117,7 +116,7 @@ export default function MainHeader() {
                 key={item.name}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`relative group font-medium transition-colors duration-300 hover:text-[#A9CF45] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
+                className={`relative group water-hover rounded-md px-1.5 py-1 font-medium transition-colors duration-300 hover:text-[#A9CF45] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
                   active ? "text-[#A9CF45]" : ""
                 }`}
               >
@@ -132,10 +131,10 @@ export default function MainHeader() {
           })}
 
           {/* CTA Button */}
-          <motion.div whileHover={hoverScale} whileTap={tapScale} className="ml-4">
+          <motion.div whileHover={hoverScale} whileTap={tapScale} className="ml-2">
             <Link
               href="/contact"
-              className="bg-gradient-to-r from-[#A9CF45] to-[#8ab733] text-black px-5 py-2.5 rounded-md font-semibold border border-[#A9CF45]/30 transition-all duration-300 flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
+              className="water-hover bg-gradient-to-r from-[#A9CF45] to-[#8ab733] text-black px-5 py-2.5 rounded-md font-semibold border border-[#A9CF45]/30 transition-all duration-300 flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
             >
               Request Consultation
               <motion.span
@@ -149,7 +148,7 @@ export default function MainHeader() {
           </motion.div>
 
           {/* Contact Info */}
-          <div className="ml-6 flex items-center gap-3">
+          <div className="ml-2 hidden xl:flex items-center gap-3">
             <motion.a
               href="tel:+27719020281"
               className="rounded-full border-2 p-2 hover:border-[#A9CF45] hover:bg-[#A9CF45]/10 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"

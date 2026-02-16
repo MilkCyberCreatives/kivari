@@ -119,11 +119,6 @@ export default function SEO({
     url: siteUrl,
     inLanguage: "en-ZA",
     publisher: { "@id": `${siteUrl}#organization` },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${siteUrl}/search?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
   };
 
   const faqSchema =

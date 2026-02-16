@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,6 +8,7 @@ import { FaArrowRight, FaArrowDown } from "react-icons/fa";
 
 export default function HeroSection({ scrollToRef }) {
   const reduceMotion = useReducedMotion();
+  const sectionRef = useRef(null);
 
   const containerVariants = useMemo(
     () =>
@@ -39,7 +40,12 @@ export default function HeroSection({ scrollToRef }) {
   );
 
   const handleScrollClick = () => {
-    scrollToRef?.current?.scrollIntoView({ behavior: "smooth" });
+    const target =
+      scrollToRef?.current ||
+      document.querySelector("#about") ||
+      sectionRef.current?.nextElementSibling;
+
+    target?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   // Deterministic particles so SSR and CSR match.
@@ -58,7 +64,7 @@ export default function HeroSection({ scrollToRef }) {
   }, []);
 
   return (
-    <section aria-label="KIVARI hero" className="relative w-full h-screen flex items-center overflow-hidden">
+    <section ref={sectionRef} aria-label="KIVARI hero" className="hero-water relative w-full h-screen flex items-center overflow-hidden">
       <Image
         src="/images/hero-bg.jpg"
         alt=""
@@ -127,7 +133,7 @@ export default function HeroSection({ scrollToRef }) {
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <Link
               href="/about"
-              className="bg-gradient-to-r from-[#A9CF45] to-[#8ab733] hover:from-[#8ab733] hover:to-[#7aa82d] text-black px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-3 transition-all duration-300 border border-[#A9CF45]/30 text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
+              className="water-hover bg-gradient-to-r from-[#A9CF45] to-[#8ab733] hover:from-[#8ab733] hover:to-[#7aa82d] text-black px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-3 transition-all duration-300 border border-[#A9CF45]/30 text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
             >
               More About Us
               {!reduceMotion && (
@@ -139,7 +145,7 @@ export default function HeroSection({ scrollToRef }) {
 
             <Link
               href="/services"
-              className="bg-white/90 hover:bg-white text-gray-800 px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-3 transition-all duration-300 border border-white/60 text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
+              className="water-hover bg-white/90 hover:bg-white text-gray-800 px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-3 transition-all duration-300 border border-white/60 text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
             >
               Our Services
               {!reduceMotion && (
@@ -177,15 +183,15 @@ export default function HeroSection({ scrollToRef }) {
         transition={{ delay: 1.2 }}
         whileHover={reduceMotion ? {} : { scale: 1.12 }}
         whileTap={reduceMotion ? {} : { scale: 0.92 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 bg-transparent border-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] rounded-full p-2"
+        className="water-hover absolute bottom-8 left-1/2 -translate-x-1/2 z-10 bg-black/20 border border-[#A9CF45]/40 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] rounded-full p-2"
         type="button"
       >
         {!reduceMotion ? (
           <motion.div animate={{ y: [0, 15, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
-            <FaArrowDown className="text-white text-3xl" />
+            <FaArrowDown className="text-[#A9CF45] text-3xl" />
           </motion.div>
         ) : (
-          <FaArrowDown className="text-white text-3xl" />
+          <FaArrowDown className="text-[#A9CF45] text-3xl" />
         )}
       </motion.button>
     </section>

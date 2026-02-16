@@ -105,6 +105,79 @@
   .card {
     @apply bg-white border border-gray-200 rounded-lg overflow-hidden;
   }
+
+  .header-water {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .header-water::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(120% 70% at 50% -30%, rgba(169, 207, 69, 0.18), rgba(169, 207, 69, 0)),
+      linear-gradient(110deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 45%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .header-water:hover::after {
+    opacity: 1;
+  }
+
+  .water-hover {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .water-hover::before {
+    content: "";
+    position: absolute;
+    inset: -80%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0) 58%);
+    transform: translate3d(-35%, 35%, 0) scale(0.55);
+    opacity: 0;
+    transition: transform 0.45s ease, opacity 0.45s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .water-hover:hover::before {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 1;
+  }
+
+  .water-hover > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-water {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .hero-water::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(75% 45% at 50% 105%, rgba(169, 207, 69, 0.16), rgba(169, 207, 69, 0)),
+      linear-gradient(150deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 45%);
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-water:hover::after {
+    opacity: 1;
+  }
 }
 
 /* Minor polish */

@@ -195,8 +195,8 @@ export default function ContactPage() {
                 >
                   {displayEmail}
                 </a>
-                <a href={`mailto:${displayEmail}`} className="text-gray-600 hover:text-[#A9CF45] transition-colors block">
-                  {displayEmail}
+                <a href="mailto:info@kivari.co.za" className="text-gray-600 hover:text-[#A9CF45] transition-colors block">
+                  info@kivari.co.za
                 </a>
               </div>
             </motion.div>
