@@ -76,15 +76,15 @@ export default function HeroSection({ scrollToRef }) {
       />
 
       <div
-        className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50 z-0"
+        className="absolute inset-0 bg-gradient-to-t from-black/82 via-black/62 to-black/45 z-0"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black/62 via-black/30 to-transparent z-[1]"
+        className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/58 via-black/24 to-transparent z-[1]"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent via-white/25 to-white z-[1]"
+        className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-b from-transparent via-white/18 to-white z-[1]"
         aria-hidden="true"
       />
 
@@ -178,7 +178,11 @@ export default function HeroSection({ scrollToRef }) {
             height={960}
             priority
             sizes="(max-width: 1024px) 60vw, 40vw"
-            className="h-[44vh] sm:h-[54vh] md:h-[62vh] lg:h-[78vh] w-auto object-contain"
+            className="h-[42vh] sm:h-[52vh] md:h-[60vh] lg:h-[72vh] w-auto object-contain"
+            style={{
+              WebkitMaskImage: "linear-gradient(to top, transparent 0%, black 18%, black 100%)",
+              maskImage: "linear-gradient(to top, transparent 0%, black 18%, black 100%)",
+            }}
           />
         </motion.div>
       </motion.div>
