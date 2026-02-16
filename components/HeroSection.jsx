@@ -80,11 +80,11 @@ export default function HeroSection({ scrollToRef }) {
         aria-hidden="true"
       />
       <div
-        className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/70 via-black/35 to-transparent z-[1]"
+        className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black/62 via-black/30 to-transparent z-[1]"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-b from-transparent via-white/35 to-white z-[1]"
+        className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent via-white/25 to-white z-[1]"
         aria-hidden="true"
       />
 
@@ -117,12 +117,12 @@ export default function HeroSection({ scrollToRef }) {
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-h-[100svh] flex flex-col lg:flex-row items-center justify-center lg:justify-between pt-20 md:pt-24 pb-20 lg:pb-8"
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-h-[100svh] flex flex-col lg:flex-row items-center justify-center lg:justify-between pt-20 md:pt-24 pb-16 lg:pb-8"
       >
         <div className="max-w-2xl text-center lg:text-left">
           <motion.h1
             variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl xl:text-6xl font-extrabold tracking-tight text-white leading-tight mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight mb-6"
           >
             <span className="text-[#A9CF45]">Build Better.</span>
             <br className="hidden sm:block" />
@@ -178,7 +178,7 @@ export default function HeroSection({ scrollToRef }) {
             height={960}
             priority
             sizes="(max-width: 1024px) 60vw, 40vw"
-            className="h-[40vh] sm:h-[48vh] md:h-[56vh] lg:h-[68vh] w-auto object-contain"
+            className="h-[44vh] sm:h-[54vh] md:h-[62vh] lg:h-[78vh] w-auto object-contain"
           />
         </motion.div>
       </motion.div>
