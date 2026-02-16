@@ -77,31 +77,31 @@ export default function HeroSection({ scrollToRef }) {
       />
 
       <div
-        className="absolute inset-0 bg-black/44 z-0"
+        className="absolute inset-0 bg-black/48 z-0"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-y-0 left-0 w-[78%] bg-gradient-to-r from-black/82 via-black/62 to-transparent z-0"
+        className="absolute inset-y-0 left-0 w-[78%] bg-gradient-to-r from-black/86 via-black/68 to-transparent z-0"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/66 to-black/36 z-0"
+        className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/40 z-0"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-0 bg-gradient-to-t from-black/86 via-black/62 to-black/44 z-0"
+        className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/66 to-black/46 z-0"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/76 via-black/42 to-transparent z-[1]"
+        className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/84 via-black/56 to-transparent z-[2]"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-x-0 bottom-0 h-44 sm:h-48 lg:h-56 bg-gradient-to-b from-transparent via-white/16 to-white z-[3]"
+        className="absolute inset-x-0 bottom-0 h-44 sm:h-48 lg:h-56 bg-gradient-to-b from-transparent via-white/16 to-white z-[11] pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-x-0 bottom-0 h-20 sm:h-24 lg:h-28 bg-gradient-to-t from-white/95 via-white/66 to-transparent z-[4] pointer-events-none"
+        className="absolute inset-x-0 bottom-0 h-20 sm:h-24 lg:h-28 bg-gradient-to-t from-white/95 via-white/66 to-transparent z-[12] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -136,7 +136,7 @@ export default function HeroSection({ scrollToRef }) {
         variants={containerVariants}
         className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-h-[100svh] flex flex-col lg:flex-row items-center justify-center lg:justify-between pt-20 md:pt-24 pb-14 lg:pb-8"
       >
-        <div className="max-w-2xl text-center lg:text-left lg:pr-6">
+        <div className="relative z-[13] max-w-2xl text-center lg:text-left lg:pr-6">
           <motion.h1
             variants={itemVariants}
             className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight mb-6 [text-shadow:0_4px_18px_rgba(0,0,0,0.58)]"
@@ -186,7 +186,7 @@ export default function HeroSection({ scrollToRef }) {
           initial={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 80 }}
           animate={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-8 lg:mt-0 flex justify-center items-end h-full w-full lg:w-[52%]"
+          className="relative z-[9] mt-8 lg:mt-0 flex justify-center items-end h-full w-full lg:w-[52%]"
         >
           <Image
             src="/images/hero-person-opt.webp"
