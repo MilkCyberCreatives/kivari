@@ -40,7 +40,7 @@ export default function AboutSection() {
   return (
     <section id="about" className="relative py-20 bg-white overflow-hidden">
       <div
-        className="absolute inset-x-0 -top-10 h-24 bg-gradient-to-b from-transparent via-white/24 to-white pointer-events-none z-[1]"
+        className="absolute inset-x-0 -top-8 h-20 bg-gradient-to-b from-transparent via-white/18 to-white pointer-events-none z-[1]"
         aria-hidden="true"
       />
 

@@ -76,15 +76,19 @@ export default function HeroSection({ scrollToRef }) {
       />
 
       <div
-        className="absolute inset-0 bg-gradient-to-t from-black/82 via-black/62 to-black/45 z-0"
+        className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/52 to-black/20 z-0"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/58 via-black/24 to-transparent z-[1]"
+        className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/50 to-black/35 z-0"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-b from-transparent via-white/18 to-white z-[1]"
+        className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/62 via-black/30 to-transparent z-[1]"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent via-white/12 to-white z-[1]"
         aria-hidden="true"
       />
 
@@ -117,9 +121,9 @@ export default function HeroSection({ scrollToRef }) {
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-h-[100svh] flex flex-col lg:flex-row items-center justify-center lg:justify-between pt-20 md:pt-24 pb-16 lg:pb-8"
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-h-[100svh] flex flex-col lg:flex-row items-center justify-center lg:justify-between pt-20 md:pt-24 pb-14 lg:pb-8"
       >
-        <div className="max-w-2xl text-center lg:text-left">
+        <div className="max-w-2xl text-center lg:text-left lg:pr-6">
           <motion.h1
             variants={itemVariants}
             className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight mb-6"
@@ -169,7 +173,7 @@ export default function HeroSection({ scrollToRef }) {
           initial={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 80 }}
           animate={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-10 lg:mt-0 flex justify-center items-end h-full w-full lg:w-auto"
+          className="mt-8 lg:mt-0 flex justify-center items-end h-full w-full lg:w-[44%]"
         >
           <Image
             src="/images/hero-person.png"
@@ -178,11 +182,7 @@ export default function HeroSection({ scrollToRef }) {
             height={960}
             priority
             sizes="(max-width: 1024px) 60vw, 40vw"
-            className="h-[42vh] sm:h-[52vh] md:h-[60vh] lg:h-[72vh] w-auto object-contain"
-            style={{
-              WebkitMaskImage: "linear-gradient(to top, transparent 0%, black 18%, black 100%)",
-              maskImage: "linear-gradient(to top, transparent 0%, black 18%, black 100%)",
-            }}
+            className="h-[38vh] sm:h-[46vh] md:h-[56vh] lg:h-[66vh] xl:h-[70vh] w-auto object-contain object-bottom"
           />
         </motion.div>
       </motion.div>

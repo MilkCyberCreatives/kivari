@@ -15,6 +15,10 @@ export default function MainHeader() {
   const displayEmail = (process.env.NEXT_PUBLIC_DISPLAY_EMAIL || "info1.kivari@gmail.com").trim();
   const isHome = router.pathname === "/";
   const isLightHeader = isHome;
+  const contactIconClass = isLightHeader
+    ? "water-hover rounded-full border-2 border-white/60 p-2 hover:border-[#A9CF45] hover:bg-[#A9CF45]/10"
+    : "water-hover rounded-full border-2 border-gray-300 p-2 hover:border-[#A9CF45] hover:bg-[#A9CF45]/12";
+  const contactTextClass = isLightHeader ? "text-white/95" : "text-gray-800";
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -132,14 +136,14 @@ export default function MainHeader() {
           <div className="ml-3 lg:ml-5 flex items-center gap-3">
             <motion.a
               href="tel:+27719020281"
-              className="water-hover rounded-full border-2 border-white/60 p-2 hover:border-[#A9CF45] hover:bg-[#A9CF45]/10 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
+              className={`${contactIconClass} transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2`}
               aria-label="Call KIVARI now"
               whileHover={reduceMotion ? {} : { rotate: 15 }}
             >
               <FaPhone className="text-base" />
             </motion.a>
 
-            <div className="leading-tight text-sm">
+            <div className={`leading-tight text-sm ${contactTextClass}`}>
               <a
                 href="tel:+27719020281"
                 className="block hover:text-[#A9CF45] transition-colors duration-300 font-medium"
