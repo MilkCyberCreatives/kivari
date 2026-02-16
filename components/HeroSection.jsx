@@ -76,27 +76,27 @@ export default function HeroSection({ scrollToRef }) {
       />
 
       <div
-        className="absolute inset-0 bg-black/32 z-0"
+        className="absolute inset-0 bg-black/38 z-0"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/58 to-black/28 z-0"
+        className="absolute inset-0 bg-gradient-to-r from-black/84 via-black/64 to-black/34 z-0"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-0 bg-gradient-to-t from-black/78 via-black/54 to-black/38 z-0"
+        className="absolute inset-0 bg-gradient-to-t from-black/82 via-black/58 to-black/42 z-0"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/68 via-black/34 to-transparent z-[1]"
+        className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/72 via-black/36 to-transparent z-[1]"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent via-white/14 to-white z-[2]"
+        className="absolute inset-x-0 bottom-0 h-44 sm:h-48 lg:h-56 bg-gradient-to-b from-transparent via-white/16 to-white z-[3]"
         aria-hidden="true"
       />
       <div
-        className="absolute bottom-0 right-0 h-28 sm:h-32 lg:h-40 w-full lg:w-[52%] bg-gradient-to-t from-white via-white/72 to-transparent z-[11] pointer-events-none"
+        className="absolute inset-x-0 bottom-0 h-20 sm:h-24 lg:h-28 bg-gradient-to-t from-white/95 via-white/66 to-transparent z-[4] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -181,7 +181,7 @@ export default function HeroSection({ scrollToRef }) {
           initial={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 80 }}
           animate={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-8 lg:mt-0 flex justify-center items-end h-full w-full lg:w-[44%]"
+          className="mt-8 lg:mt-0 flex justify-center items-end h-full w-full lg:w-[46%]"
         >
           <Image
             src="/images/hero-person.png"
@@ -190,10 +190,10 @@ export default function HeroSection({ scrollToRef }) {
             height={960}
             priority
             sizes="(max-width: 1024px) 60vw, 40vw"
-            className="h-[48vh] sm:h-[60vh] md:h-[72vh] lg:h-[88vh] xl:h-[92vh] w-auto object-contain object-bottom"
+            className="h-[52vh] sm:h-[66vh] md:h-[78vh] lg:h-[94vh] xl:h-[98vh] w-auto object-contain object-bottom"
             style={{
-              WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 86%, transparent 100%)",
-              maskImage: "linear-gradient(to bottom, black 0%, black 86%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 74%, transparent 100%)",
+              maskImage: "linear-gradient(to bottom, black 0%, black 74%, transparent 100%)",
             }}
           />
         </motion.div>
