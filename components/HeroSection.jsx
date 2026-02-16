@@ -50,7 +50,7 @@ export default function HeroSection({ scrollToRef }) {
 
   // Deterministic particles so SSR and CSR match.
   const particles = useMemo(() => {
-    const n = 12;
+    const n = 8;
     return Array.from({ length: n }, (_, i) => {
       const top = (i * 13) % 100;
       const left = (i * 21) % 100;
@@ -66,29 +66,34 @@ export default function HeroSection({ scrollToRef }) {
   return (
     <section ref={sectionRef} aria-label="KIVARI hero" className="hero-water relative w-full h-[100svh] min-h-[100svh] flex items-center overflow-hidden">
       <Image
-        src="/images/hero-bg.jpg"
+        src="/images/hero-bg-opt.webp"
         alt=""
         fill
         priority
+        quality={72}
         sizes="100vw"
         className="object-cover"
         aria-hidden="true"
       />
 
       <div
-        className="absolute inset-0 bg-black/38 z-0"
+        className="absolute inset-0 bg-black/44 z-0"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-0 bg-gradient-to-r from-black/84 via-black/64 to-black/34 z-0"
+        className="absolute inset-y-0 left-0 w-[78%] bg-gradient-to-r from-black/82 via-black/62 to-transparent z-0"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-0 bg-gradient-to-t from-black/82 via-black/58 to-black/42 z-0"
+        className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/66 to-black/36 z-0"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/72 via-black/36 to-transparent z-[1]"
+        className="absolute inset-0 bg-gradient-to-t from-black/86 via-black/62 to-black/44 z-0"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/76 via-black/42 to-transparent z-[1]"
         aria-hidden="true"
       />
       <div
@@ -101,7 +106,7 @@ export default function HeroSection({ scrollToRef }) {
       />
 
       {!reduceMotion && (
-        <div className="absolute inset-0 z-0 opacity-20" aria-hidden="true">
+        <div className="absolute inset-0 z-0 opacity-[0.16] hidden sm:block" aria-hidden="true">
           {particles.map((p, i) => (
             <motion.div
               key={i}
@@ -134,7 +139,7 @@ export default function HeroSection({ scrollToRef }) {
         <div className="max-w-2xl text-center lg:text-left lg:pr-6">
           <motion.h1
             variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight mb-6 [text-shadow:0_4px_18px_rgba(0,0,0,0.58)]"
           >
             <span className="text-[#A9CF45]">Build Better.</span>
             <br className="hidden sm:block" />
@@ -145,7 +150,7 @@ export default function HeroSection({ scrollToRef }) {
 
           <motion.p
             variants={itemVariants}
-            className="text-white/90 text-lg md:text-xl mb-8 max-w-lg leading-relaxed mx-auto lg:mx-0"
+            className="text-white text-lg md:text-xl mb-8 max-w-lg leading-relaxed mx-auto lg:mx-0 [text-shadow:0_2px_12px_rgba(0,0,0,0.5)]"
           >
             Premium residential and civil construction delivered safely, on time, and with precision.
           </motion.p>
@@ -181,19 +186,19 @@ export default function HeroSection({ scrollToRef }) {
           initial={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 80 }}
           animate={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-8 lg:mt-0 flex justify-center items-end h-full w-full lg:w-[46%]"
+          className="mt-8 lg:mt-0 flex justify-center items-end h-full w-full lg:w-[52%]"
         >
           <Image
-            src="/images/hero-person.png"
+            src="/images/hero-person-opt.webp"
             alt="KIVARI construction professional"
             width={720}
             height={960}
-            priority
-            sizes="(max-width: 1024px) 60vw, 40vw"
-            className="h-[52vh] sm:h-[66vh] md:h-[78vh] lg:h-[94vh] xl:h-[98vh] w-auto object-contain object-bottom"
+            quality={70}
+            sizes="(max-width: 1024px) 64vw, 46vw"
+            className="h-[58vh] sm:h-[72vh] md:h-[84vh] lg:h-[102vh] xl:h-[108vh] w-auto object-contain object-bottom"
             style={{
-              WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 74%, transparent 100%)",
-              maskImage: "linear-gradient(to bottom, black 0%, black 74%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 86%, transparent 100%)",
+              maskImage: "linear-gradient(to bottom, black 0%, black 86%, transparent 100%)",
             }}
           />
         </motion.div>
