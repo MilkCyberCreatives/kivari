@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { FaBars, FaTimes, FaPhone, FaEnvelope } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import MobileNav from "./MobileNav";
 
@@ -15,6 +15,7 @@ export default function MainHeader() {
   const rafId = useRef(null);
   const reduceMotion = useReducedMotion();
   const displayEmail = (process.env.NEXT_PUBLIC_DISPLAY_EMAIL || "info1.kivari@gmail.com").trim();
+  const isHome = router.pathname === "/";
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -28,7 +29,8 @@ export default function MainHeader() {
     const onScroll = () => {
       if (rafId.current) return;
       rafId.current = requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 10);
+        const threshold = isHome ? 120 : 10;
+        setScrolled(window.scrollY > threshold);
         rafId.current = null;
       });
     };
@@ -38,7 +40,7 @@ export default function MainHeader() {
       if (rafId.current) cancelAnimationFrame(rafId.current);
       window.removeEventListener("scroll", onScroll);
     };
-  }, []);
+  }, [isHome]);
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -76,7 +78,7 @@ export default function MainHeader() {
         Skip to content
       </a>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 md:py-4 flex items-center justify-between gap-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 md:py-4 flex items-center justify-between gap-5">
         {/* Logo */}
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, x: -20 }}
@@ -146,34 +148,6 @@ export default function MainHeader() {
               </motion.span>
             </Link>
           </motion.div>
-
-          {/* Contact Info */}
-          <div className="ml-2 hidden xl:flex items-center gap-3">
-            <motion.a
-              href="tel:+27719020281"
-              className="rounded-full border-2 p-2 hover:border-[#A9CF45] hover:bg-[#A9CF45]/10 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
-              aria-label="Call KIVARI now"
-              whileHover={reduceMotion ? {} : { rotate: 15 }}
-            >
-              <FaPhone className="text-lg" />
-            </motion.a>
-
-            <div className="leading-tight text-sm">
-              <a
-                href="tel:+27719020281"
-                className="block hover:text-[#A9CF45] transition-colors duration-300 font-medium"
-              >
-                +27 71 902 0281
-              </a>
-              <a
-                href={`mailto:${displayEmail}`}
-                className="flex items-center gap-1 text-xs hover:text-[#A9CF45] transition-colors duration-300"
-              >
-                <FaEnvelope className="text-xs" aria-hidden="true" />
-                <span className="underline-offset-2">{displayEmail}</span>
-              </a>
-            </div>
-          </div>
         </nav>
 
         {/* Mobile Menu Toggle */}

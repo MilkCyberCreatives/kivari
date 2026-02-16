@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import MainHeader from '@/components/MainHeader';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
@@ -12,6 +13,12 @@ import SEO from '@/components/SEO';
 
 export default function HomePage() {
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.kivari.co.za').trim();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
+  }, []);
 
   return (
     <>

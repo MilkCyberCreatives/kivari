@@ -79,6 +79,10 @@ export default function HeroSection({ scrollToRef }) {
         className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50 z-0"
         aria-hidden="true"
       />
+      <div
+        className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent via-white/40 to-white z-[1]"
+        aria-hidden="true"
+      />
 
       {!reduceMotion && (
         <div className="absolute inset-0 z-0 opacity-20" aria-hidden="true">
@@ -183,15 +187,15 @@ export default function HeroSection({ scrollToRef }) {
         transition={{ delay: 1.2 }}
         whileHover={reduceMotion ? {} : { scale: 1.12 }}
         whileTap={reduceMotion ? {} : { scale: 0.92 }}
-        className="water-hover absolute bottom-8 left-1/2 -translate-x-1/2 z-10 bg-black/20 border border-[#A9CF45]/40 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] rounded-full p-2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 bg-transparent border-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] rounded-full p-2"
         type="button"
       >
         {!reduceMotion ? (
           <motion.div animate={{ y: [0, 15, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
-            <FaArrowDown className="text-[#A9CF45] text-3xl" />
+            <FaArrowDown className="text-white text-3xl" />
           </motion.div>
         ) : (
-          <FaArrowDown className="text-[#A9CF45] text-3xl" />
+          <FaArrowDown className="text-white text-3xl" />
         )}
       </motion.button>
     </section>
