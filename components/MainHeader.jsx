@@ -85,7 +85,7 @@ export default function MainHeader() {
         Skip to content
       </a>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 md:py-4 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 md:py-4 flex items-center justify-between gap-3 sm:gap-4">
         {/* Logo */}
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, x: -20 }}
@@ -97,7 +97,7 @@ export default function MainHeader() {
             <motion.div
               whileHover={hoverScale}
               transition={{ type: "spring", stiffness: 400, damping: 18 }}
-              className="h-14 md:h-16 w-auto"
+              className="h-10 sm:h-12 md:h-16 w-auto"
             >
               {/* Use Next/Image to avoid layout shift & enable AVIF/WebP */}
               <Image
@@ -106,7 +106,7 @@ export default function MainHeader() {
                 width={160}
                 height={64}
                 priority
-                className="h-14 md:h-16 w-auto"
+                className="h-10 sm:h-12 md:h-16 w-auto"
               />
             </motion.div>
           </Link>
@@ -187,7 +187,7 @@ export default function MainHeader() {
 
         {/* Mobile Menu Toggle */}
         <motion.button
-          className="md:hidden text-2xl focus:outline-none z-50 p-1 rounded-md focus-visible:ring-2 focus-visible:ring-[#A9CF45]"
+          className="md:hidden text-xl focus:outline-none z-50 p-1 rounded-md focus-visible:ring-2 focus-visible:ring-[#A9CF45]"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
@@ -195,7 +195,7 @@ export default function MainHeader() {
           whileHover={hoverScale}
           whileTap={tapScale}
         >
-          {menuOpen ? <FaTimes className="text-3xl" /> : <FaBars className="text-3xl" />}
+          {menuOpen ? <FaTimes className="text-[2rem]" /> : <FaBars className="text-[2rem]" />}
         </motion.button>
 
         {/* Mobile Navigation */}

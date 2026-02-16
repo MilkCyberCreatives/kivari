@@ -128,7 +128,7 @@ export default function MobileNav({
             animate="visible"
             exit="exit"
             variants={containerVariants}
-            className="md:hidden fixed inset-x-0 top-16 bottom-0 bg-white/95 backdrop-blur-sm z-50 pt-3 px-6 overflow-y-auto"
+            className="md:hidden fixed inset-x-0 top-14 sm:top-16 bottom-0 bg-white/95 backdrop-blur-sm z-50 pt-3 px-5 overflow-y-auto"
           >
             {/* Title for a11y (visually hidden) */}
             <h2 id={`${id}-title`} className="sr-only">

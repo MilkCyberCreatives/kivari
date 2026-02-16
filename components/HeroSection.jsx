@@ -134,18 +134,17 @@ export default function HeroSection({ scrollToRef }) {
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-h-[100svh] flex flex-col lg:flex-row items-center justify-center lg:justify-between pt-20 md:pt-24 pb-14 lg:pb-8"
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-h-[100svh] flex flex-col lg:flex-row items-center justify-start lg:justify-between pt-28 sm:pt-24 md:pt-24 pb-10 sm:pb-14 lg:pb-8"
       >
         <div className="relative z-[13] max-w-2xl text-center lg:text-left lg:pr-6">
           <motion.h1
             variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-tight mb-6 [text-shadow:0_4px_18px_rgba(0,0,0,0.58)]"
+            className="text-[2.85rem] leading-[0.92] sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white mb-5 sm:mb-6 [text-shadow:0_4px_18px_rgba(0,0,0,0.58)]"
           >
-            <span className="text-[#A9CF45]">Build Better.</span>
+            <span className="text-[#A9CF45] block sm:inline">Build Better.</span>
+            <span className="block sm:inline"> Build With</span>
             <br className="hidden sm:block" />
-            Build With
-            <br className="hidden sm:block" />
-            <span className="text-[#A9CF45]">KIVARI.</span>
+            <span className="text-[#A9CF45] block sm:inline">KIVARI.</span>
           </motion.h1>
 
           <motion.p
@@ -155,10 +154,10 @@ export default function HeroSection({ scrollToRef }) {
             Premium residential and civil construction delivered safely, on time, and with precision.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3.5 sm:gap-4 justify-center lg:justify-start">
             <Link
               href="/about"
-              className="water-hover bg-gradient-to-r from-[#A9CF45] to-[#8ab733] hover:from-[#8ab733] hover:to-[#7aa82d] text-black px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-3 transition-all duration-300 border border-[#A9CF45]/30 text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
+              className="water-hover w-full sm:w-auto bg-gradient-to-r from-[#A9CF45] to-[#8ab733] hover:from-[#8ab733] hover:to-[#7aa82d] text-black px-6 sm:px-8 py-3.5 sm:py-4 rounded-lg font-bold flex items-center justify-center gap-3 transition-all duration-300 border border-[#A9CF45]/30 text-base sm:text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
             >
               More About Us
               {!reduceMotion && (
@@ -170,7 +169,7 @@ export default function HeroSection({ scrollToRef }) {
 
             <Link
               href="/services"
-              className="water-hover bg-white/90 hover:bg-white text-gray-800 px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-3 transition-all duration-300 border border-white/60 text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
+              className="water-hover w-full sm:w-auto bg-white/90 hover:bg-white text-gray-800 px-6 sm:px-8 py-3.5 sm:py-4 rounded-lg font-bold flex items-center justify-center gap-3 transition-all duration-300 border border-white/60 text-base sm:text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
             >
               Our Services
               {!reduceMotion && (
@@ -186,7 +185,7 @@ export default function HeroSection({ scrollToRef }) {
           initial={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 80 }}
           animate={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative z-[9] mt-8 lg:mt-0 flex justify-center items-end h-full w-full lg:w-[52%]"
+          className="relative z-[9] mt-6 sm:mt-8 lg:mt-0 flex justify-center items-end h-full w-full lg:w-[52%]"
         >
           <Image
             src="/images/hero-person-opt.webp"
@@ -195,7 +194,7 @@ export default function HeroSection({ scrollToRef }) {
             height={960}
             quality={70}
             sizes="(max-width: 1024px) 64vw, 46vw"
-            className="h-[58vh] sm:h-[72vh] md:h-[84vh] lg:h-[102vh] xl:h-[108vh] w-auto object-contain object-bottom"
+            className="h-[34vh] sm:h-[46vh] md:h-[60vh] lg:h-[102vh] xl:h-[108vh] w-auto object-contain object-bottom"
             style={{
               WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 86%, transparent 100%)",
               maskImage: "linear-gradient(to bottom, black 0%, black 86%, transparent 100%)",
@@ -212,7 +211,7 @@ export default function HeroSection({ scrollToRef }) {
         transition={{ delay: 1.2 }}
         whileHover={reduceMotion ? {} : { scale: 1.12 }}
         whileTap={reduceMotion ? {} : { scale: 0.92 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 bg-transparent border-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] rounded-full p-2"
+        className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 bg-transparent border-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] rounded-full p-2"
         type="button"
       >
         {!reduceMotion ? (
