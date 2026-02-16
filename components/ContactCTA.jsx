@@ -44,7 +44,7 @@ export default function ContactCTA() {
 
   const phoneDisplay = "+27 71 902 0281";
   const phoneHref = "tel:+27719020281";
-  const email = process.env.NEXT_PUBLIC_DISPLAY_EMAIL || "info1.kivari@gmail.com";
+  const email = (process.env.NEXT_PUBLIC_DISPLAY_EMAIL || "info1.kivari@gmail.com").trim();
   const mapsHref = "https://www.google.com/maps/search/?api=1&query=Johannesburg,+South+Africa";
 
   const jsonLd = {
@@ -220,3 +220,4 @@ export default function ContactCTA() {
     </section>
   );
 }
+

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 
 export default function FooterSection() {
-  const displayEmail = process.env.NEXT_PUBLIC_DISPLAY_EMAIL || "info1.kivari@gmail.com";
+  const displayEmail = (process.env.NEXT_PUBLIC_DISPLAY_EMAIL || "info1.kivari@gmail.com").trim();
   const [quickForm, setQuickForm] = useState({ name: '', phone: '', company: '' });
   const [isSending, setIsSending] = useState(false);
   const [status, setStatus] = useState('');
@@ -188,3 +188,4 @@ export default function FooterSection() {
     </footer>
   );
 }
+

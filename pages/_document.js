@@ -3,6 +3,8 @@ import { Html, Head, Main, NextScript } from 'next/document';
 export default function Document() {
   const siteName = 'KIVARI Construction';
   const themeColor = '#A9CF45';
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID?.trim();
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.kivari.co.za').trim();
 
   return (
     <Html lang="en" className="scroll-smooth">
@@ -23,11 +25,25 @@ export default function Document() {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content={siteName} />
+
+        {/* AI and search discoverability */}
+        <link rel="alternate" type="text/plain" href={`${siteUrl}/llms.txt`} />
       </Head>
       <body>
+        {gtmId ? (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+        ) : null}
         <Main />
         <NextScript />
       </body>
     </Html>
   );
 }
+

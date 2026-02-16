@@ -1,7 +1,13 @@
 import "@/styles/globals.css";
-import "@fontsource/inter";
+import "@fontsource/manrope/400.css";
+import "@fontsource/manrope/500.css";
+import "@fontsource/manrope/600.css";
+import "@fontsource/manrope/700.css";
+import "@fontsource/sora/600.css";
+import "@fontsource/sora/700.css";
 import React from "react";
 import Head from "next/head";
+import MarketingScripts from "@/components/MarketingScripts";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -11,7 +17,10 @@ function MyApp({ Component, pageProps }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Component {...pageProps} />
+      <MarketingScripts />
+      <div id="main">
+        <Component {...pageProps} />
+      </div>
     </>
   );
 }

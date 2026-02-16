@@ -11,8 +11,7 @@ import ScrollUpButton from '@/components/ScrollUpButton';
 import SEO from '@/components/SEO';
 
 export default function HomePage() {
-  const siteUrl = 'https://www.kivari.co.za';
-  const displayEmail = process.env.NEXT_PUBLIC_DISPLAY_EMAIL || 'info1.kivari@gmail.com';
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.kivari.co.za').trim();
 
   return (
     <>
@@ -21,9 +20,26 @@ export default function HomePage() {
         description="Trusted construction company in Midrand, Gauteng. We build homes, roads, and infrastructure across South Africa with safety and quality."
         url={siteUrl}
         image="/images/about/aboutus.jpg"
+        faq={[
+          {
+            question: 'What construction services does KIVARI provide?',
+            answer:
+              'KIVARI provides residential construction, civil engineering, earthworks, renovations, waterproofing, scaffolding, project supervision, and maintenance services.',
+          },
+          {
+            question: 'Where does KIVARI operate?',
+            answer:
+              'KIVARI is based in Midrand, Gauteng and supports projects across South Africa.',
+          },
+          {
+            question: 'How can I request a quote from KIVARI?',
+            answer:
+              'Use the website contact form or call KIVARI to request a consultation and project quote.',
+          },
+        ]}
       />
 
-      {/* Organization + WebSite JSON-LD */}
+      {/* Home Page JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -31,26 +47,24 @@ export default function HomePage() {
             '@context': 'https://schema.org',
             '@graph': [
               {
-                '@type': 'Organization',
-                '@id': `${siteUrl}#org`,
-                name: 'KIVARI Construction',
+                '@type': 'WebPage',
+                '@id': `${siteUrl}#home`,
                 url: siteUrl,
-                logo: `${siteUrl}/logo.svg`,
-                email: displayEmail,
-                telephone: '+27 71 902 0281',
-                sameAs: [],
+                name: 'KIVARI Construction Home',
+                isPartOf: { '@id': `${siteUrl}#website` },
+                about: { '@id': `${siteUrl}#organization` },
+                description:
+                  'KIVARI provides premium residential, civil, and infrastructure construction services in Midrand, Gauteng, and across South Africa.',
               },
               {
-                '@type': 'WebSite',
-                '@id': `${siteUrl}#website`,
-                url: siteUrl,
-                name: 'KIVARI Construction',
-                publisher: { '@id': `${siteUrl}#org` },
-                potentialAction: {
-                  '@type': 'SearchAction',
-                  target: `${siteUrl}/search?q={search_term_string}`,
-                  'query-input': 'required name=search_term_string',
-                },
+                '@type': 'ItemList',
+                name: 'Featured Construction Services',
+                itemListElement: [
+                  { '@type': 'ListItem', position: 1, name: 'Residential Building Construction', url: `${siteUrl}/services` },
+                  { '@type': 'ListItem', position: 2, name: 'Civil Engineering and Infrastructure', url: `${siteUrl}/services` },
+                  { '@type': 'ListItem', position: 3, name: 'Site Preparation and Earthworks', url: `${siteUrl}/services` },
+                  { '@type': 'ListItem', position: 4, name: 'Renovations and Extensions', url: `${siteUrl}/services` },
+                ],
               },
             ],
           }),
@@ -70,3 +84,4 @@ export default function HomePage() {
     </>
   );
 }
+

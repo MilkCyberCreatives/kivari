@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import MainHeader from '@/components/MainHeader';
 import FooterSection from '@/components/FooterSection';
@@ -28,6 +29,15 @@ export default function AboutPage() {
         description="KIVARI is a South African construction company delivering residential and civil projects with safety, compliance, and excellence."
         url={`${siteUrl}/about`}
         image="/images/about/aboutus.jpg"
+        keywords={[
+          "about KIVARI construction",
+          "construction team Gauteng",
+          "trusted construction company South Africa",
+          "construction mission and vision",
+          "civil and residential specialists",
+          "construction quality and compliance",
+          "project delivery excellence",
+        ]}
       />
 
       <MainHeader />
@@ -207,7 +217,7 @@ export default function AboutPage() {
             to discuss your next project.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+            <Link
               href="/contact"
               className="inline-flex items-center bg-[#A9CF45] hover:bg-[#8ab733] text-black px-8 py-4 rounded-lg font-semibold border border-[#A9CF45]/30 transition-all duration-300"
             >
@@ -215,7 +225,7 @@ export default function AboutPage() {
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
             <a
               href="tel:+27719020281"
               className="inline-flex items-center bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300"

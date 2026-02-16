@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://www.kivari.co.za",
+  siteUrl: (process.env.NEXT_PUBLIC_SITE_URL || "https://www.kivari.co.za").trim(),
   generateRobotsTxt: true,
   sitemapSize: 5000,
   changefreq: "weekly",
@@ -11,6 +11,18 @@ module.exports = {
       {
         userAgent: "*",
         allow: "/"
+      },
+      {
+        userAgent: "GPTBot",
+        allow: "/"
+      },
+      {
+        userAgent: "Google-Extended",
+        allow: "/"
+      },
+      {
+        userAgent: "CCBot",
+        allow: "/"
       }
     ],
     additionalSitemaps: [
@@ -18,3 +30,4 @@ module.exports = {
     ]
   }
 };
+

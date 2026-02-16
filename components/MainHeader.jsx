@@ -14,7 +14,7 @@ export default function MainHeader() {
   const router = useRouter();
   const rafId = useRef(null);
   const reduceMotion = useReducedMotion();
-  const displayEmail = process.env.NEXT_PUBLIC_DISPLAY_EMAIL || "info1.kivari@gmail.com";
+  const displayEmail = (process.env.NEXT_PUBLIC_DISPLAY_EMAIL || "info1.kivari@gmail.com").trim();
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -44,6 +44,7 @@ export default function MainHeader() {
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
     { name: "Services", href: "/services" },
+    { name: "Search", href: "/search" },
     { name: "Projects", href: "#projects" },
     { name: "Contact", href: "/contact" },
   ];
@@ -207,3 +208,4 @@ export default function MainHeader() {
     </header>
   );
 }
+

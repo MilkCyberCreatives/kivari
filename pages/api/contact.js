@@ -88,14 +88,16 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Please provide a valid email address." });
   }
 
-  const smtpHost = process.env.SMTP_HOST;
-  const smtpPort = Number(process.env.SMTP_PORT || 465);
-  const smtpUser = process.env.SMTP_USER;
-  const smtpPass = process.env.SMTP_PASS;
-  const smtpSecure = process.env.SMTP_SECURE ? process.env.SMTP_SECURE === "true" : smtpPort === 465;
-  const toEmail = process.env.CONTACT_TO_EMAIL || "info@kivari.co.za";
-  const fromEmail = process.env.SMTP_FROM_EMAIL || smtpUser;
-  const fromName = process.env.SMTP_FROM_NAME || "KIVARI Website";
+  const smtpHost = (process.env.SMTP_HOST || "").trim();
+  const smtpPort = Number((process.env.SMTP_PORT || "465").trim());
+  const smtpUser = (process.env.SMTP_USER || "").trim();
+  const smtpPass = process.env.SMTP_PASS || "";
+  const smtpSecure = process.env.SMTP_SECURE
+    ? process.env.SMTP_SECURE.trim() === "true"
+    : smtpPort === 465;
+  const toEmail = (process.env.CONTACT_TO_EMAIL || "info@kivari.co.za").trim();
+  const fromEmail = (process.env.SMTP_FROM_EMAIL || smtpUser).trim();
+  const fromName = (process.env.SMTP_FROM_NAME || "KIVARI Website").trim();
 
   if (!smtpHost || !smtpPort || !smtpUser || !smtpPass || !fromEmail) {
     return res.status(500).json({ error: "Email service is not configured yet." });

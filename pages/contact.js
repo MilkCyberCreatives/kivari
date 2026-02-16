@@ -17,7 +17,7 @@ const initialFormState = {
 
 export default function ContactPage() {
   const siteUrl = 'https://www.kivari.co.za';
-  const displayEmail = process.env.NEXT_PUBLIC_DISPLAY_EMAIL || 'info1.kivari@gmail.com';
+  const displayEmail = (process.env.NEXT_PUBLIC_DISPLAY_EMAIL || 'info1.kivari@gmail.com').trim();
 
   const [formState, setFormState] = useState(initialFormState);
   const [isSending, setIsSending] = useState(false);
@@ -74,6 +74,24 @@ export default function ContactPage() {
         description="Get a free quote from KIVARI Construction. Based in Midrand, Gauteng - serving clients across South Africa."
         url={`${siteUrl}/contact`}
         image="/images/about/aboutus.jpg"
+        keywords={[
+          'contact KIVARI construction',
+          'construction quote Midrand',
+          'construction consultation Gauteng',
+          'building contractor contact',
+          'civil works enquiry South Africa',
+          'project consultation request',
+        ]}
+        faq={[
+          {
+            question: 'How do I contact KIVARI for a project quote?',
+            answer: 'Submit the contact form on this page or call KIVARI directly for consultation and pricing.',
+          },
+          {
+            question: 'Where is KIVARI based?',
+            answer: 'KIVARI is based in Midrand, Gauteng and supports projects across South Africa.',
+          },
+        ]}
       />
 
       <script
@@ -300,3 +318,4 @@ export default function ContactPage() {
     </>
   );
 }
+
