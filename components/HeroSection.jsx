@@ -185,7 +185,7 @@ export default function HeroSection({ scrollToRef }) {
           initial={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 80 }}
           animate={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative z-[9] mt-6 sm:mt-8 lg:mt-0 flex justify-center items-end h-full w-full lg:w-[52%]"
+          className="relative z-[9] mt-6 sm:mt-8 lg:mt-0 hidden md:flex justify-center items-end h-full w-full lg:w-[52%]"
         >
           <Image
             src="/images/hero-person-opt.webp"

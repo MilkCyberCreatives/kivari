@@ -74,7 +74,7 @@ export default function MainHeader() {
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 header-water ${
         solidHeader
           ? "bg-white/95 backdrop-blur-md border-b border-gray-200/80 text-gray-900"
-          : "bg-transparent text-white"
+          : "bg-white/95 backdrop-blur-md border-b border-gray-200/80 text-gray-900 md:bg-transparent md:backdrop-blur-0 md:border-transparent md:text-white"
       }`}
     >
       {/* Skip link for accessibility */}
@@ -99,14 +99,22 @@ export default function MainHeader() {
               transition={{ type: "spring", stiffness: 400, damping: 18 }}
               className="h-10 sm:h-12 md:h-16 w-auto"
             >
-              {/* Use Next/Image to avoid layout shift & enable AVIF/WebP */}
+              {/* Mobile logo stays dark-on-white; desktop toggles by scroll state */}
+              <Image
+                src="/logo2.svg"
+                alt="KIVARI Logo"
+                width={160}
+                height={64}
+                priority
+                className="h-10 sm:h-12 w-auto md:hidden"
+              />
               <Image
                 src={solidHeader ? "/logo2.svg" : "/logo.svg"}
                 alt="KIVARI Logo"
                 width={160}
                 height={64}
                 priority
-                className="h-10 sm:h-12 md:h-16 w-auto"
+                className="hidden md:block h-16 w-auto"
               />
             </motion.div>
           </Link>
