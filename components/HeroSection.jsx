@@ -64,7 +64,7 @@ export default function HeroSection({ scrollToRef }) {
   }, []);
 
   return (
-    <section ref={sectionRef} aria-label="KIVARI hero" className="hero-water relative w-full h-[100svh] min-h-[100svh] flex items-center overflow-hidden">
+    <section ref={sectionRef} aria-label="KIVARI hero" className="hero-water relative w-full h-auto min-h-0 sm:h-[100svh] sm:min-h-[100svh] flex items-center overflow-hidden">
       <Image
         src="/images/hero-bg-opt.webp"
         alt=""
@@ -97,11 +97,11 @@ export default function HeroSection({ scrollToRef }) {
         aria-hidden="true"
       />
       <div
-        className="absolute inset-x-0 bottom-0 h-44 sm:h-48 lg:h-56 bg-gradient-to-b from-transparent via-white/16 to-white z-[11] pointer-events-none"
+        className="absolute inset-x-0 bottom-0 h-24 sm:h-40 lg:h-56 bg-gradient-to-b from-transparent via-white/16 to-white z-[11] pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-x-0 bottom-0 h-20 sm:h-24 lg:h-28 bg-gradient-to-t from-white/95 via-white/66 to-transparent z-[12] pointer-events-none"
+        className="absolute inset-x-0 bottom-0 h-12 sm:h-20 lg:h-28 bg-gradient-to-t from-white/95 via-white/66 to-transparent z-[12] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -134,7 +134,7 @@ export default function HeroSection({ scrollToRef }) {
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-h-[100svh] flex flex-col lg:flex-row items-center justify-start lg:justify-between pt-28 sm:pt-24 md:pt-24 pb-10 sm:pb-14 lg:pb-8"
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-h-0 sm:min-h-[100svh] flex flex-col lg:flex-row items-center justify-start lg:justify-between pt-24 sm:pt-24 md:pt-24 pb-6 sm:pb-14 lg:pb-8"
       >
         <div className="relative z-[13] max-w-2xl text-center lg:text-left lg:pr-6">
           <motion.h1
@@ -211,7 +211,7 @@ export default function HeroSection({ scrollToRef }) {
         transition={{ delay: 1.2 }}
         whileHover={reduceMotion ? {} : { scale: 1.12 }}
         whileTap={reduceMotion ? {} : { scale: 0.92 }}
-        className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 bg-transparent border-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] rounded-full p-2"
+        className="absolute bottom-2 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 bg-transparent border-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] rounded-full p-2"
         type="button"
       >
         {!reduceMotion ? (
