@@ -125,7 +125,7 @@ export default function ServicesSection() {
                 key={service.title}
                 variants={itemVariants}
                 whileHover={reduceMotion ? {} : { y: -5 }}
-                className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group"
+                className="bg-white border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 group"
               >
                 {/* Image */}
                 <div className="relative h-56 w-full overflow-hidden">
@@ -196,7 +196,7 @@ export default function ServicesSection() {
         >
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#A9CF45] to-[#8ab733] hover:from-[#8ab733] hover:to-[#7aa82d] text-black px-8 py-3.5 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#A9CF45] to-[#8ab733] hover:from-[#8ab733] hover:to-[#7aa82d] text-black px-8 py-3.5 rounded-lg font-semibold border border-[#A9CF45]/30 transition-all duration-300 text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
           >
             View All Services
             <FaArrowRight className="transition-transform duration-300" />

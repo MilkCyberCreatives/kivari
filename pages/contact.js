@@ -9,6 +9,7 @@ import SEO from '@/components/SEO';
 
 export default function ContactPage() {
   const siteUrl = 'https://www.kivari.co.za';
+  const displayEmail = process.env.NEXT_PUBLIC_DISPLAY_EMAIL || 'info1.kivari@gmail.com';
 
   return (
     <>
@@ -37,7 +38,7 @@ export default function ContactPage() {
               addressRegion: 'Gauteng',
               addressLocality: 'Midrand',
             },
-            email: 'info@kivari.co.za',
+            email: displayEmail,
             areaServed: ['Midrand', 'Gauteng', 'South Africa'],
             geo: { '@type': 'GeoCoordinates', latitude: -25.999181, longitude: 28.126303 },
           }),
@@ -118,11 +119,11 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="font-bold text-gray-800 mb-2">Email</h3>
-                <a href="mailto:info@kivari.co.za" className="text-gray-600 hover:text-[#A9CF45] transition-colors block mb-1">
-                  info@kivari.co.za
+                <a href={`mailto:${displayEmail}`} className="text-gray-600 hover:text-[#A9CF45] transition-colors block mb-1">
+                  {displayEmail}
                 </a>
-                <a href="mailto:support@kivari.co.za" className="text-gray-600 hover:text-[#A9CF45] transition-colors block">
-                  support@kivari.co.za
+                <a href={`mailto:${displayEmail}`} className="text-gray-600 hover:text-[#A9CF45] transition-colors block">
+                  {displayEmail}
                 </a>
               </div>
             </motion.div>
@@ -130,7 +131,7 @@ export default function ContactPage() {
 
           {/* Form */}
           <motion.form
-            className="bg-gray-50 p-8 rounded-xl shadow-sm"
+            className="bg-gray-50 p-8 rounded-xl border border-gray-200"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -186,7 +187,7 @@ export default function ContactPage() {
 
             <motion.button
               type="submit"
-              className="w-full bg-gradient-to-r from-[#A9CF45] to-[#8ab733] hover:from-[#8ab733] hover:to-[#7aa82d] text-black px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-[#A9CF45] to-[#8ab733] hover:from-[#8ab733] hover:to-[#7aa82d] text-black px-6 py-3 rounded-lg font-semibold border border-[#A9CF45]/30 transition-all duration-300 flex items-center justify-center gap-2"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

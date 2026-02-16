@@ -87,7 +87,7 @@ export default function AboutPage() {
               href="/images/documents/KIVARI-Company-Profile.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center bg-[#A9CF45] hover:bg-[#8ab733] text-black px-8 py-3.5 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              className="inline-flex items-center bg-[#A9CF45] hover:bg-[#8ab733] text-black px-8 py-3.5 rounded-lg font-semibold border border-[#A9CF45]/30 transition-all duration-300"
             >
               View Company Profile
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -98,7 +98,7 @@ export default function AboutPage() {
 
           {/* Image */}
           <motion.div
-            className="relative overflow-hidden rounded-xl shadow-2xl"
+            className="relative overflow-hidden rounded-xl border border-gray-200"
             variants={{ hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8 } } }}
           >
             <Image
@@ -167,7 +167,7 @@ export default function AboutPage() {
             ].map((item, idx) => (
               <motion.div
                 key={idx}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-white p-8 rounded-xl border border-gray-200 transition-all duration-300"
                 variants={fadeIn}
                 whileHover={{ y: -5 }}
               >
@@ -209,7 +209,7 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/contact"
-              className="inline-flex items-center bg-[#A9CF45] hover:bg-[#8ab733] text-black px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              className="inline-flex items-center bg-[#A9CF45] hover:bg-[#8ab733] text-black px-8 py-4 rounded-lg font-semibold border border-[#A9CF45]/30 transition-all duration-300"
             >
               Contact Us
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -218,7 +218,7 @@ export default function AboutPage() {
             </a>
             <a
               href="tel:+27719020281"
-              className="inline-flex items-center bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              className="inline-flex items-center bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300"
             >
               Call Now
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

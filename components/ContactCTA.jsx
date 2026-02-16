@@ -44,7 +44,7 @@ export default function ContactCTA() {
 
   const phoneDisplay = "+27 71 902 0281";
   const phoneHref = "tel:+27719020281";
-  const email = "info@kivari.co.za";
+  const email = process.env.NEXT_PUBLIC_DISPLAY_EMAIL || "info1.kivari@gmail.com";
   const mapsHref = "https://www.google.com/maps/search/?api=1&query=Johannesburg,+South+Africa";
 
   const jsonLd = {
@@ -141,7 +141,7 @@ export default function ContactCTA() {
               type="button"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-[#A9CF45] to-[#8ab733] hover:from-[#8ab733] hover:to-[#7aa82d] text-black px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 text-lg flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
+              className="bg-gradient-to-r from-[#A9CF45] to-[#8ab733] hover:from-[#8ab733] hover:to-[#7aa82d] text-black px-8 py-4 rounded-lg font-semibold border border-[#A9CF45]/30 transition-all duration-300 text-lg flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
             >
               Request Consultation
               <motion.span
@@ -160,7 +160,7 @@ export default function ContactCTA() {
               type="button"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white/10 hover:bg-white/20 border border-white/30 text-white px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 text-lg flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
+              className="bg-white/10 hover:bg-white/20 border border-white/30 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 text-lg flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
             >
               <FaPhone className="text-[#A9CF45]" aria-hidden="true" />
               Call Now

@@ -93,10 +93,6 @@
     to   { opacity: 1; }
   }
 
-  /* Text shadow helpers */
-  .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-  .text-shadow-dark { text-shadow: 0 2px 4px rgba(0,0,0,0.25); }
-
   /* Subtle SVG grid background (optional) */
   .bg-grid {
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23e5e7eb25' stroke-width='1' stroke-dasharray='4' stroke-linecap='square'/%3e%3c/svg%3e");
@@ -104,13 +100,13 @@
 
   /* Reusable button utility (variable-backed) */
   .btn-primary {
-    @apply bg-primary hover:bg-[rgb(var(--primary-dark))] text-black px-6 py-3 rounded-md font-semibold shadow-md transition-all duration-300;
+    @apply bg-primary hover:bg-[rgb(var(--primary-dark))] text-black px-6 py-3 rounded-md font-semibold border border-primary/30 transition-all duration-300;
     border-radius: var(--radius);
   }
 
   /* Reusable card utility */
   .card {
-    @apply bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden;
+    @apply bg-white border border-gray-200 rounded-lg overflow-hidden;
   }
 }
 

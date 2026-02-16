@@ -78,7 +78,7 @@ export default function AboutSection() {
             className="absolute left-0 top-0 h-full w-1 bg-[#A9CF45] rounded-full origin-top"
             aria-hidden="true"
           />
-          <div className="relative overflow-hidden rounded-xl shadow-2xl group">
+          <div className="relative overflow-hidden rounded-xl border border-gray-200 group">
             <motion.div
               initial={reduceMotion ? false : { scale: 1.06 }}
               whileInView={reduceMotion ? false : { scale: 1 }}
@@ -123,7 +123,7 @@ export default function AboutSection() {
           <motion.div variants={itemVariants}>
             <Link
               href="/about"
-              className="inline-flex items-center justify-center bg-gradient-to-r from-[#A9CF45] to-[#8ab733] hover:from-[#8ab733] hover:to-[#7aa82d] text-black px-8 py-3.5 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
+              className="inline-flex items-center justify-center bg-gradient-to-r from-[#A9CF45] to-[#8ab733] hover:from-[#8ab733] hover:to-[#7aa82d] text-black px-8 py-3.5 rounded-lg font-semibold border border-[#A9CF45]/30 transition-all duration-300 text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
             >
               More About Us
             </Link>

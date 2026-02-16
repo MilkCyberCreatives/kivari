@@ -12,7 +12,7 @@ import { FaPhone, FaEnvelope } from "react-icons/fa";
  * - setMenuOpen: (boolean) => void
  * - navItems?: {name:string, href:string}[]
  * - phone?: string   e.g. "+27719020281"
- * - email?: string   e.g. "info@kivari.co.za"
+ * - email?: string   e.g. "info1.kivari@gmail.com"
  * - brandColor?: string hex e.g. "#A9CF45"
  */
 export default function MobileNav({
@@ -27,7 +27,7 @@ export default function MobileNav({
     { name: "Contact", href: "/contact" },
   ],
   phone = "+27719020281",
-  email = "info@kivari.co.za",
+  email = "info1.kivari@gmail.com",
   brandColor = "#A9CF45",
 }) {
   const reduceMotion = useReducedMotion();
@@ -95,7 +95,9 @@ export default function MobileNav({
     ? { hidden: { opacity: 0 }, visible: { opacity: 1 }, exit: { opacity: 0 } }
     : { hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 }, exit: { opacity: 0, x: -20 } };
 
-  const brandGrad = `bg-gradient-to-r from-[${brandColor}] to-[#8ab733]`;
+  const brandGradStyle = {
+    backgroundImage: `linear-gradient(to right, ${brandColor}, #8ab733)`,
+  };
 
   const telHref = `tel:${phone.replace(/\s+/g, "")}`;
 
@@ -185,7 +187,8 @@ export default function MobileNav({
               <Link
                 href="/contact"
                 onClick={() => setMenuOpen(false)}
-                className={`block w-full ${brandGrad} text-black text-center px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45]`}
+                style={brandGradStyle}
+                className="block w-full text-black text-center px-6 py-3 rounded-xl font-semibold border border-[#A9CF45]/30 transition-all duration-300 text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45]"
               >
                 Request Consultation
               </Link>

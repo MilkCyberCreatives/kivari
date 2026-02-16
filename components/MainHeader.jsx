@@ -14,6 +14,7 @@ export default function MainHeader() {
   const router = useRouter();
   const rafId = useRef(null);
   const reduceMotion = useReducedMotion();
+  const displayEmail = process.env.NEXT_PUBLIC_DISPLAY_EMAIL || "info1.kivari@gmail.com";
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -63,7 +64,7 @@ export default function MainHeader() {
       role="banner"
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-md shadow-md text-gray-800"
+          ? "bg-white/90 backdrop-blur-md border-b border-gray-200/70 text-gray-800"
           : "bg-transparent text-white"
       }`}
     >
@@ -133,7 +134,7 @@ export default function MainHeader() {
           <motion.div whileHover={hoverScale} whileTap={tapScale} className="ml-4">
             <Link
               href="/contact"
-              className="bg-gradient-to-r from-[#A9CF45] to-[#8ab733] text-black px-5 py-2.5 rounded-md font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
+              className="bg-gradient-to-r from-[#A9CF45] to-[#8ab733] text-black px-5 py-2.5 rounded-md font-semibold border border-[#A9CF45]/30 transition-all duration-300 flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
             >
               Request Consultation
               <motion.span
@@ -165,11 +166,11 @@ export default function MainHeader() {
                 +27 71 902 0281
               </a>
               <a
-                href="mailto:info@kivari.co.za"
+                href={`mailto:${displayEmail}`}
                 className="flex items-center gap-1 text-xs hover:text-[#A9CF45] transition-colors duration-300"
               >
                 <FaEnvelope className="text-xs" aria-hidden="true" />
-                <span className="underline-offset-2">info@kivari.co.za</span>
+                <span className="underline-offset-2">{displayEmail}</span>
               </a>
             </div>
           </div>
@@ -197,7 +198,7 @@ export default function MainHeader() {
               setMenuOpen={setMenuOpen}
               navItems={navItems}
               phone="+27719020281"
-              email="info@kivari.co.za"
+              email={displayEmail}
               brandColor="#A9CF45"
             />
           )}

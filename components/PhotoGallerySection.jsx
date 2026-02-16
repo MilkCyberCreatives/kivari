@@ -156,7 +156,7 @@ export default function PhotoGallerySection() {
             <motion.li
               key={image.src}
               variants={itemVariants}
-              className="relative group overflow-hidden rounded-xl shadow-lg"
+              className="relative group overflow-hidden rounded-xl border border-gray-200"
             >
               <button
                 type="button"
@@ -251,7 +251,7 @@ export default function PhotoGallerySection() {
                     <button
                       aria-label="Previous image"
                       onClick={prev}
-                      className="rounded-md bg-white/80 hover:bg-white text-gray-900 px-3 py-2 font-semibold shadow"
+                      className="rounded-md bg-white/80 hover:bg-white text-gray-900 px-3 py-2 font-semibold border border-gray-300"
                     >
                       ← Prev
                     </button>
@@ -265,7 +265,7 @@ export default function PhotoGallerySection() {
                     <button
                       aria-label="Next image"
                       onClick={next}
-                      className="rounded-md bg-white/80 hover:bg-white text-gray-900 px-3 py-2 font-semibold shadow"
+                      className="rounded-md bg-white/80 hover:bg-white text-gray-900 px-3 py-2 font-semibold border border-gray-300"
                     >
                       Next →
                     </button>

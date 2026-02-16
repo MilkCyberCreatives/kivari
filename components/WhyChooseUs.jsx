@@ -109,7 +109,7 @@ export default function WhyChooseUs() {
               key={item.title}
               variants={itemVariants}
               whileHover={reduceMotion ? {} : { y: -5 }}
-              className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 group border border-gray-100 hover:border-[#A9CF45]/30"
+              className="bg-white p-8 rounded-xl transition-all duration-300 group border border-gray-200 hover:border-[#A9CF45]/40"
             >
               <div className="mb-6 flex justify-center">
                 <div className="bg-[#A9CF45]/10 p-4 rounded-full text-[#A9CF45] group-hover:bg-[#A9CF45] group-hover:text-white transition-all duration-300">

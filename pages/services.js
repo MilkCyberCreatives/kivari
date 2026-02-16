@@ -65,12 +65,8 @@ const BreadcrumbHero = ({ title, subtitle }) => (
  * ---------------------------- */
 const ServiceCard = ({ image, title, description, icon }) => (
   <motion.article
-    className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group"
-    whileHover={{
-      y: -10,
-      boxShadow:
-        "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-    }}
+    className="bg-white rounded-xl overflow-hidden transition-all duration-300 border border-gray-200 group"
+    whileHover={{ y: -10 }}
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5 }}
@@ -295,11 +291,8 @@ export default function ServicesPage() {
             </p>
             <motion.a
               href="/contact"
-              className="inline-flex items-center bg-[#A9CF45] hover:bg-[#8ab733] text-black px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 20px 25px -5px rgba(0,0,0,0.1)",
-              }}
+              className="inline-flex items-center bg-[#A9CF45] hover:bg-[#8ab733] text-black px-8 py-4 rounded-lg font-semibold border border-[#A9CF45]/30 transition-all duration-300"
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Contact Us

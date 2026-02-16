@@ -12,6 +12,7 @@ import SEO from '@/components/SEO';
 
 export default function HomePage() {
   const siteUrl = 'https://www.kivari.co.za';
+  const displayEmail = process.env.NEXT_PUBLIC_DISPLAY_EMAIL || 'info1.kivari@gmail.com';
 
   return (
     <>
@@ -35,7 +36,7 @@ export default function HomePage() {
                 name: 'KIVARI Construction',
                 url: siteUrl,
                 logo: `${siteUrl}/logo.svg`,
-                email: 'info@kivari.co.za',
+                email: displayEmail,
                 telephone: '+27 71 902 0281',
                 sameAs: [],
               },

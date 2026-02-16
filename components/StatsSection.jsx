@@ -103,7 +103,7 @@ export default function StatsSection() {
               key={stat.label}
               variants={itemVariants}
               whileHover={reduceMotion ? {} : { y: -10 }}
-              className="bg-white/10 backdrop-blur-sm p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-white/10 hover:border-white/20"
+              className="bg-white/10 backdrop-blur-sm p-8 rounded-xl transition-all duration-300 border border-white/15 hover:border-white/25"
             >
               <div className="flex flex-col items-center text-center">
                 <div className="bg-white/20 p-4 rounded-full mb-6" aria-hidden="true">
@@ -137,7 +137,7 @@ export default function StatsSection() {
         >
           <Link
             href="/contact"
-            className="inline-block bg-white text-[#2f2f2f] px-8 py-4 rounded-lg font-bold shadow-lg hover:shadow-xl hover:bg-gray-100 transition-all duration-300 text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40"
+            className="inline-block bg-white text-[#2f2f2f] px-8 py-4 rounded-lg font-bold border border-white/60 hover:bg-gray-100 transition-all duration-300 text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40"
           >
             Start Your Project Today
           </Link>

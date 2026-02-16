@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 
 export default function FooterSection() {
+  const displayEmail = process.env.NEXT_PUBLIC_DISPLAY_EMAIL || "info1.kivari@gmail.com";
+
   const socials = [
     { href: 'https://facebook.com/kivari', Icon: FaFacebookF, label: 'Facebook' },
     { href: 'https://twitter.com/kivari', Icon: FaTwitter, label: 'Twitter' },
@@ -81,8 +83,8 @@ export default function FooterSection() {
               </a>
             </li>
             <li>
-              <a className="hover:text-white" href="mailto:info@kivari.co.za">
-                info@kivari.co.za
+              <a className="hover:text-white" href={`mailto:${displayEmail}`}>
+                {displayEmail}
               </a>
             </li>
           </ul>

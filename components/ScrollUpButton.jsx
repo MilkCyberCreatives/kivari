@@ -41,10 +41,10 @@ export default function ScrollToTopButton() {
           exit={{ opacity: 0, y: 20 }}
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.92 }}
-          className="fixed bottom-8 right-8 z-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
+          className="group fixed bottom-8 right-8 z-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
         >
           <motion.div
-            className="relative bg-gradient-to-br from-[#A9CF45] to-[#8ab733] text-gray-900 p-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center"
+            className="relative bg-gradient-to-br from-[#A9CF45] to-[#8ab733] text-gray-900 p-4 rounded-full border border-[#A9CF45]/30 transition-all duration-300 flex items-center justify-center"
             animate={
               reduceMotion
                 ? {}
@@ -62,7 +62,7 @@ export default function ScrollToTopButton() {
 
             {/* Tooltip */}
             <motion.span
-              className="absolute -bottom-8 text-xs font-medium text-gray-700 bg-white/80 px-2 py-0.5 rounded-md shadow-md opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity"
+              className="absolute -bottom-8 text-xs font-medium text-gray-700 bg-white/80 px-2 py-0.5 rounded-md border border-gray-200 opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity"
               initial={{ opacity: 0 }}
               whileHover={{ opacity: 1 }}
             >
