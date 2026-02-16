@@ -185,7 +185,7 @@ export default function HeroSection({ scrollToRef }) {
           initial={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 80 }}
           animate={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative z-[9] mt-6 sm:mt-8 lg:mt-0 hidden md:flex justify-center items-end h-full w-full lg:w-[52%]"
+          className="relative z-[9] hidden md:flex md:mt-2 lg:-mt-4 justify-center items-end h-full w-full lg:w-[54%]"
         >
           <Image
             src="/images/hero-person-opt.webp"
@@ -194,7 +194,7 @@ export default function HeroSection({ scrollToRef }) {
             height={960}
             quality={70}
             sizes="(max-width: 1024px) 64vw, 46vw"
-            className="h-[34vh] sm:h-[46vh] md:h-[60vh] lg:h-[102vh] xl:h-[108vh] w-auto object-contain object-bottom"
+            className="h-[34vh] sm:h-[46vh] md:h-[68vh] lg:h-[108vh] xl:h-[114vh] w-auto object-contain object-bottom"
             style={{
               WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 86%, transparent 100%)",
               maskImage: "linear-gradient(to bottom, black 0%, black 86%, transparent 100%)",
