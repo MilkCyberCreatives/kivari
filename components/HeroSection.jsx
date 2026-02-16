@@ -211,7 +211,7 @@ export default function HeroSection({ scrollToRef }) {
         transition={{ delay: 1.2 }}
         whileHover={reduceMotion ? {} : { scale: 1.12 }}
         whileTap={reduceMotion ? {} : { scale: 0.92 }}
-        className="absolute bottom-2 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 bg-transparent border-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] rounded-full p-2"
+        className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2 z-20 bg-transparent border-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] rounded-full p-2"
         type="button"
       >
         {!reduceMotion ? (
