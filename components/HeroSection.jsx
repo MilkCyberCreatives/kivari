@@ -141,10 +141,9 @@ export default function HeroSection({ scrollToRef }) {
             variants={itemVariants}
             className="text-[2.85rem] leading-[0.92] sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white mb-5 sm:mb-6 [text-shadow:0_4px_18px_rgba(0,0,0,0.58)]"
           >
-            <span className="text-[#A9CF45] block sm:inline">Build Better.</span>
-            <span className="block sm:inline"> Build With</span>
-            <br className="hidden sm:block" />
-            <span className="text-[#A9CF45] block sm:inline">KIVARI.</span>
+            <span className="text-[#A9CF45] block whitespace-nowrap">Build Better.</span>
+            <span className="block whitespace-nowrap">Build With</span>
+            <span className="text-[#A9CF45] block whitespace-nowrap">KIVARI.</span>
           </motion.h1>
 
           <motion.p
@@ -185,7 +184,7 @@ export default function HeroSection({ scrollToRef }) {
           initial={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 80 }}
           animate={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative z-[9] hidden md:flex md:mt-2 lg:-mt-4 justify-center items-end h-full w-full lg:w-[54%]"
+          className="relative z-[9] hidden md:flex md:mt-0 lg:-mt-8 justify-center items-end h-full w-full lg:w-[58%]"
         >
           <Image
             src="/images/hero-person-opt.webp"
@@ -194,7 +193,7 @@ export default function HeroSection({ scrollToRef }) {
             height={960}
             quality={70}
             sizes="(max-width: 1024px) 64vw, 46vw"
-            className="h-[34vh] sm:h-[46vh] md:h-[68vh] lg:h-[108vh] xl:h-[114vh] w-auto object-contain object-bottom"
+            className="h-[34vh] sm:h-[46vh] md:h-[74vh] lg:h-[118vh] xl:h-[124vh] w-auto object-contain object-bottom"
             style={{
               WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 86%, transparent 100%)",
               maskImage: "linear-gradient(to bottom, black 0%, black 86%, transparent 100%)",
