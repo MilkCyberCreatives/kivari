@@ -69,7 +69,7 @@ export default function FooterSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         <div>
           <Link href="/" className="inline-block">
-            <Image src="/logo.svg" width={180} height={58} alt="KIVARI logo" priority />
+            <Image src="/logo.svg" width={180} height={58} alt="KIVARI logo" />
           </Link>
           <p className="mt-4 text-sm text-gray-400">
             KIVARI delivers quality construction solutions across South Africa.
@@ -123,7 +123,7 @@ export default function FooterSection() {
 
         <div>
           <h4 className="text-lg font-semibold mb-4">Quick Inquiry</h4>
-          <form className="space-y-3" onSubmit={handleQuickSubmit}>
+          <form className="space-y-3" onSubmit={handleQuickSubmit} aria-busy={isSending}>
             <input
               type="text"
               name="company"
@@ -140,6 +140,8 @@ export default function FooterSection() {
               value={quickForm.name}
               onChange={handleQuickChange}
               placeholder="Name"
+              aria-label="Name"
+              autoComplete="name"
               className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white placeholder:text-gray-400 focus:border-[#A9CF45] focus:outline-none"
               required
             />
@@ -149,6 +151,9 @@ export default function FooterSection() {
               value={quickForm.phone}
               onChange={handleQuickChange}
               placeholder="Phone"
+              aria-label="Phone"
+              autoComplete="tel"
+              inputMode="tel"
               className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white placeholder:text-gray-400 focus:border-[#A9CF45] focus:outline-none"
               required
             />
@@ -159,7 +164,11 @@ export default function FooterSection() {
             >
               {isSending ? 'Sending...' : 'Request Callback'}
             </button>
-            {status ? <p className="text-xs text-gray-400">{status}</p> : null}
+            {status ? (
+              <p className="text-xs text-gray-400" role="status" aria-live="polite">
+                {status}
+              </p>
+            ) : null}
           </form>
         </div>
       </div>

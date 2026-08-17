@@ -45,23 +45,7 @@ export default function ContactCTA() {
   const phoneDisplay = "+27 71 902 0281";
   const phoneHref = "tel:+27719020281";
   const email = (process.env.NEXT_PUBLIC_DISPLAY_EMAIL || "info1.kivari@gmail.com").trim();
-  const mapsHref = "https://www.google.com/maps/search/?api=1&query=Johannesburg,+South+Africa";
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "KIVARI (Pty) Ltd",
-    url: "https://www.kivari.co.za",
-    contactPoint: [
-      {
-        "@type": "ContactPoint",
-        telephone: "+27-71-902-0281",
-        contactType: "customer service",
-        areaServed: "ZA",
-        availableLanguage: ["en"],
-      },
-    ],
-  };
+  const mapsHref = "https://www.google.com/maps/search/?api=1&query=Midrand,+Gauteng,+South+Africa";
 
   return (
     <section
@@ -110,9 +94,6 @@ export default function ContactCTA() {
         </div>
       )}
 
-      {/* JSON-LD for contact (SEO) */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-
       {/* Main Content */}
       <motion.div
         initial="hidden"
@@ -136,11 +117,13 @@ export default function ContactCTA() {
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/contact" className="inline-flex">
-            <motion.button
-              type="button"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+          <motion.div
+            className="inline-flex"
+            whileHover={reduceMotion ? {} : { scale: 1.05 }}
+            whileTap={reduceMotion ? {} : { scale: 0.95 }}
+          >
+            <Link
+              href="/contact"
               className="bg-gradient-to-r from-[#A9CF45] to-[#8ab733] hover:from-[#8ab733] hover:to-[#7aa82d] text-black px-8 py-4 rounded-lg font-semibold border border-[#A9CF45]/30 transition-all duration-300 text-lg flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
             >
               Request Consultation
@@ -151,21 +134,18 @@ export default function ContactCTA() {
               >
                 &rarr;
               </motion.span>
-            </motion.button>
-          </Link>
+            </Link>
+          </motion.div>
 
-          {/* tel: should NOT have spaces */}
-          <Link href={phoneHref} className="inline-flex">
-            <motion.button
-              type="button"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white/10 hover:bg-white/20 border border-white/30 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 text-lg flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
-            >
-              <FaPhone className="text-[#A9CF45]" aria-hidden="true" />
-              Call Now
-            </motion.button>
-          </Link>
+          <motion.a
+            href={phoneHref}
+            whileHover={reduceMotion ? {} : { scale: 1.05 }}
+            whileTap={reduceMotion ? {} : { scale: 0.95 }}
+            className="inline-flex bg-white/10 hover:bg-white/20 border border-white/30 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 text-lg items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A9CF45] focus-visible:ring-offset-2"
+          >
+            <FaPhone className="text-[#A9CF45]" aria-hidden="true" />
+            Call Now
+          </motion.a>
         </motion.div>
 
         {/* Contact Info */}
@@ -220,4 +200,3 @@ export default function ContactCTA() {
     </section>
   );
 }
-

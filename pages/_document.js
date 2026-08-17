@@ -4,21 +4,17 @@ export default function Document() {
   const siteName = 'KIVARI Construction';
   const themeColor = '#A9CF45';
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID?.trim();
-  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.kivari.co.za').trim();
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.kivari.co.za')
+    .trim()
+    .replace(/\/+$/, '');
 
   return (
-    <Html lang="en" className="scroll-smooth">
+    <Html lang="en-ZA" className="scroll-smooth">
       <Head>
         {/* Favicon & Manifest */}
         <link rel="icon" type="image/svg+xml" href="/logo2.svg" />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content={themeColor} />
-
-        {/* Preconnect/DNS Prefetch (Google Maps on Contact page) */}
-        <link rel="dns-prefetch" href="https://maps.googleapis.com" />
-        <link rel="dns-prefetch" href="https://maps.gstatic.com" />
-        <link rel="preconnect" href="https://maps.googleapis.com" crossOrigin="" />
-        <link rel="preconnect" href="https://maps.gstatic.com" crossOrigin="" />
 
         {/* Basic PWA + mobile */}
         <meta name="application-name" content={siteName} />
@@ -41,6 +37,7 @@ export default function Document() {
               height="0"
               width="0"
               style={{ display: 'none', visibility: 'hidden' }}
+              title="Google Tag Manager"
             />
           </noscript>
         ) : null}
@@ -50,4 +47,3 @@ export default function Document() {
     </Html>
   );
 }
-

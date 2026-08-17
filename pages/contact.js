@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Head from 'next/head';
 import { FiMail, FiPhone, FiMapPin, FiSend, FiUser, FiMessageSquare } from 'react-icons/fi';
 import MainHeader from '@/components/MainHeader';
 import FooterSection from '@/components/FooterSection';
@@ -16,7 +17,9 @@ const initialFormState = {
 };
 
 export default function ContactPage() {
-  const siteUrl = 'https://www.kivari.co.za';
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.kivari.co.za')
+    .trim()
+    .replace(/\/+$/, '');
   const displayEmail = (process.env.NEXT_PUBLIC_DISPLAY_EMAIL || 'info1.kivari@gmail.com').trim();
 
   const [formState, setFormState] = useState(initialFormState);
@@ -74,49 +77,10 @@ export default function ContactPage() {
         description="Get a free quote from KIVARI Construction. Based in Midrand, Gauteng - serving clients across South Africa."
         url={`${siteUrl}/contact`}
         image="/images/about/aboutus.jpg"
-        keywords={[
-          'contact KIVARI construction',
-          'construction quote Midrand',
-          'construction consultation Gauteng',
-          'building contractor contact',
-          'civil works enquiry South Africa',
-          'project consultation request',
-        ]}
-        faq={[
-          {
-            question: 'How do I contact KIVARI for a project quote?',
-            answer: 'Submit the contact form on this page or call KIVARI directly for consultation and pricing.',
-          },
-          {
-            question: 'Where is KIVARI based?',
-            answer: 'KIVARI is based in Midrand, Gauteng and supports projects across South Africa.',
-          },
-        ]}
       />
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'LocalBusiness',
-            name: 'KIVARI Construction',
-            image: `${siteUrl}/logo.svg`,
-            '@id': siteUrl,
-            url: siteUrl,
-            telephone: '+27 71 902 0281',
-            address: {
-              '@type': 'PostalAddress',
-              addressCountry: 'ZA',
-              addressRegion: 'Gauteng',
-              addressLocality: 'Midrand',
-            },
-            email: displayEmail,
-            areaServed: ['Midrand', 'Gauteng', 'South Africa'],
-            geo: { '@type': 'GeoCoordinates', latitude: -25.999181, longitude: 28.126303 },
-          }),
-        }}
-      />
+      <Head>
+        <link rel="preload" href="/images/breadcrumb-opt.webp" as="image" />
+      </Head>
 
       <MainHeader />
 
@@ -155,25 +119,25 @@ export default function ContactPage() {
           >
             <motion.div className="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors" whileHover={{ x: 5 }}>
               <div className="p-3 bg-[#A9CF45]/10 rounded-full">
-                <FiMapPin className="text-[#A9CF45] text-xl" />
+                <FiMapPin className="text-[#A9CF45] text-xl" aria-hidden="true" />
               </div>
               <div>
                 <h3 className="font-bold text-gray-800 mb-2">Address</h3>
                 <p className="text-gray-600">Midrand, Gauteng</p>
                 <a
-                  href="https://maps.google.com"
+                  href="https://www.google.com/maps/search/?api=1&query=Midrand,+Gauteng,+South+Africa"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#A9CF45] text-sm font-medium mt-2 inline-flex items-center hover:underline"
                 >
-                  View on map <FiSend className="ml-1" size={14} />
+                  View on map <FiSend className="ml-1" size={14} aria-hidden="true" />
                 </a>
               </div>
             </motion.div>
 
             <motion.div className="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors" whileHover={{ x: 5 }}>
               <div className="p-3 bg-[#A9CF45]/10 rounded-full">
-                <FiPhone className="text-[#A9CF45] text-xl" />
+                <FiPhone className="text-[#A9CF45] text-xl" aria-hidden="true" />
               </div>
               <div>
                 <h3 className="font-bold text-gray-800 mb-2">Phone</h3>
@@ -185,7 +149,7 @@ export default function ContactPage() {
 
             <motion.div className="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors" whileHover={{ x: 5 }}>
               <div className="p-3 bg-[#A9CF45]/10 rounded-full">
-                <FiMail className="text-[#A9CF45] text-xl" />
+                <FiMail className="text-[#A9CF45] text-xl" aria-hidden="true" />
               </div>
               <div>
                 <h3 className="font-bold text-gray-800 mb-2">Email</h3>
@@ -209,6 +173,7 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
             onSubmit={handleSubmit}
+            aria-busy={isSending}
           >
             <h2 className="text-2xl font-bold text-gray-800 mb-6">Send us a message</h2>
 
@@ -226,7 +191,7 @@ export default function ContactPage() {
             <div className="grid md:grid-cols-2 gap-4 mb-4">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
-                  <FiUser size={18} />
+                  <FiUser size={18} aria-hidden="true" />
                 </div>
                 <input
                   type="text"
@@ -234,13 +199,15 @@ export default function ContactPage() {
                   value={formState.name}
                   onChange={handleChange}
                   placeholder="Your Name"
+                  aria-label="Your Name"
+                  autoComplete="name"
                   className="w-full pl-10 pr-4 py-3 text-gray-700 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#A9CF45] focus:border-transparent outline-none transition-all"
                   required
                 />
               </div>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
-                  <FiMail size={18} />
+                  <FiMail size={18} aria-hidden="true" />
                 </div>
                 <input
                   type="email"
@@ -248,6 +215,9 @@ export default function ContactPage() {
                   value={formState.email}
                   onChange={handleChange}
                   placeholder="Your Email"
+                  aria-label="Your Email"
+                  autoComplete="email"
+                  inputMode="email"
                   className="w-full pl-10 pr-4 py-3 text-gray-700 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#A9CF45] focus:border-transparent outline-none transition-all"
                   required
                 />
@@ -256,7 +226,7 @@ export default function ContactPage() {
 
             <div className="relative mb-4">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
-                <FiMessageSquare size={18} />
+                <FiMessageSquare size={18} aria-hidden="true" />
               </div>
               <input
                 type="text"
@@ -264,6 +234,8 @@ export default function ContactPage() {
                 value={formState.subject}
                 onChange={handleChange}
                 placeholder="Subject"
+                aria-label="Subject"
+                autoComplete="off"
                 className="w-full pl-10 pr-4 py-3 text-gray-700 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#A9CF45] focus:border-transparent outline-none transition-all"
               />
             </div>
@@ -274,6 +246,7 @@ export default function ContactPage() {
                 value={formState.message}
                 onChange={handleChange}
                 placeholder="Your Message"
+                aria-label="Your Message"
                 className="w-full px-4 py-3 text-gray-700 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#A9CF45] focus:border-transparent outline-none transition-all resize-none"
                 rows="5"
                 required
@@ -281,7 +254,11 @@ export default function ContactPage() {
             </div>
 
             {feedback.message ? (
-              <p className={`mb-4 text-sm ${feedback.type === 'success' ? 'text-green-700' : 'text-red-600'}`}>
+              <p
+                className={`mb-4 text-sm ${feedback.type === 'success' ? 'text-green-700' : 'text-red-600'}`}
+                role={feedback.type === 'error' ? 'alert' : 'status'}
+                aria-live="polite"
+              >
                 {feedback.message}
               </p>
             ) : null}
@@ -293,7 +270,7 @@ export default function ContactPage() {
               whileHover={{ scale: isSending ? 1 : 1.02 }}
               whileTap={{ scale: isSending ? 1 : 0.98 }}
             >
-              <FiSend size={18} /> {isSending ? 'Sending...' : 'Send Message'}
+              <FiSend size={18} aria-hidden="true" /> {isSending ? 'Sending...' : 'Send Message'}
             </motion.button>
           </motion.form>
         </div>
@@ -303,6 +280,7 @@ export default function ContactPage() {
         <div className="w-full h-96">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3584.105958742963!2d28.12630321500254!3d-25.999180983511317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9563c03bacc72d%3A0xf33cf71be61cf0e3!2sMidrand%2C%20Gauteng!5e0!3m2!1sen!2sza!4v1620300000000!5m2!1sen!2sza"
+            title="KIVARI location in Midrand, Gauteng"
             width="100%"
             height="100%"
             style={{ border: 0 }}
@@ -318,4 +296,3 @@ export default function ContactPage() {
     </>
   );
 }
-
