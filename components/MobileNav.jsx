@@ -24,7 +24,7 @@ export default function MobileNav({
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
     { name: "Services", href: "/services" },
-    { name: "Projects", href: "#projects" },
+    { name: "Projects", href: "/#gallery" },
     { name: "Contact", href: "/contact" },
   ],
   phone = "+27719020281",

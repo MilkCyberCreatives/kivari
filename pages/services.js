@@ -192,25 +192,23 @@ const services = [
  *  PAGE
  * ---------------------------- */
 export default function ServicesPage() {
-  // Build JSON-LD OfferCatalog so Google understands your services
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.kivari.co.za")
+    .trim()
+    .replace(/\/+$/, "");
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "OfferCatalog",
     name: "KIVARI Services",
-    url: "https://www.kivari.co.za/services",
-    itemListElement: services.map((s, i) => ({
+    url: `${siteUrl}/services`,
+    itemListElement: services.map((service) => ({
       "@type": "Offer",
-      position: i + 1,
       itemOffered: {
         "@type": "Service",
-        name: s.title,
-        description: s.description,
+        name: service.title,
+        description: service.description,
         areaServed: "ZA",
-        provider: {
-          "@type": "Organization",
-          name: "KIVARI (Pty) Ltd",
-          url: "https://www.kivari.co.za",
-        },
+        provider: { "@id": `${siteUrl}#organization` },
       },
     })),
   };
@@ -220,32 +218,8 @@ export default function ServicesPage() {
       <SEO
         title="Services | KIVARI Construction"
         description="Explore KIVARI's full suite of construction services: residential building, civil engineering, earthworks, renovations, waterproofing, scaffolding, project supervision, and maintenance."
-        url="https://www.kivari.co.za/services"
+        url={`${siteUrl}/services`}
         image="/images/about/aboutus.jpg"
-        keywords={[
-          "construction services Midrand",
-          "civil engineering services Gauteng",
-          "residential construction company",
-          "earthworks contractor South Africa",
-          "roofing and waterproofing services",
-          "scaffolding and safety systems",
-          "project supervision services",
-          "building maintenance contractor",
-          "construction business support",
-          "facility upgrade contractor",
-        ]}
-        faq={[
-          {
-            question: "Does KIVARI handle both residential and civil construction?",
-            answer:
-              "Yes. KIVARI handles residential building, civil infrastructure, earthworks, and related construction services.",
-          },
-          {
-            question: "Can KIVARI manage a project from planning to completion?",
-            answer:
-              "Yes. KIVARI provides project planning, supervision, quality control, and turnkey execution support.",
-          },
-        ]}
       />
 
       <Head>
@@ -286,8 +260,12 @@ export default function ServicesPage() {
             </motion.div>
 
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {services.map((service, index) => (
-                <ServiceCard key={index} slug={toSlug(service.title)} {...service} />
+              {services.map((service) => (
+                <ServiceCard
+                  key={toSlug(service.title)}
+                  slug={toSlug(service.title)}
+                  {...service}
+                />
               ))}
             </div>
           </div>

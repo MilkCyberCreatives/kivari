@@ -1,40 +1,5 @@
 import Head from "next/head";
 
-const defaultKeywordList = [
-  "KIVARI",
-  "KIVARI construction",
-  "construction company Midrand",
-  "construction company Gauteng",
-  "construction company South Africa",
-  "building contractor Midrand",
-  "building contractor Gauteng",
-  "residential construction",
-  "civil engineering contractor",
-  "infrastructure contractor",
-  "earthworks contractor",
-  "road construction",
-  "stormwater drainage contractor",
-  "renovations and extensions",
-  "painting and plastering",
-  "roof maintenance",
-  "waterproofing contractor",
-  "scaffolding services",
-  "scanning and coring",
-  "project planning and supervision",
-  "general maintenance and repairs",
-  "turnkey construction",
-  "property development partner",
-  "commercial construction support",
-  "industrial maintenance support",
-  "construction project management",
-  "facility upgrades",
-  "business construction solutions",
-  "subcontracting opportunities",
-  "tender support",
-  "construction procurement partner",
-  "trusted builders South Africa",
-];
-
 export default function SEO({
   title = "KIVARI Construction | Residential, Civil and Infrastructure Experts in South Africa",
   description =
@@ -43,17 +8,16 @@ export default function SEO({
   image = "/images/about/aboutus.jpg",
   type = "website",
   canonical,
-  keywords = defaultKeywordList,
-  faq = [],
   noindex = false,
 }) {
-  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.kivari.co.za").trim();
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.kivari.co.za")
+    .trim()
+    .replace(/\/+$/, "");
   const displayEmail = (process.env.NEXT_PUBLIC_DISPLAY_EMAIL || "info1.kivari@gmail.com").trim();
 
-  const normalizedUrl = url || siteUrl;
-  const normalizedCanonical = canonical || normalizedUrl;
+  const normalizedUrl = (url || siteUrl).replace(/\/+$/, "");
+  const normalizedCanonical = (canonical || normalizedUrl).replace(/\/+$/, "");
   const ogImage = image.startsWith("http") ? image : `${siteUrl}${image}`;
-  const keywordContent = Array.isArray(keywords) ? keywords.join(", ") : keywords;
 
   const structuredDataOrg = {
     "@context": "https://schema.org",
@@ -65,10 +29,20 @@ export default function SEO({
     logo: `${siteUrl}/logo2.svg`,
     email: displayEmail,
     telephone: "+27-71-902-0281",
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: "+27-71-902-0281",
+        contactType: "customer service",
+        areaServed: "ZA",
+        availableLanguage: ["en"],
+      },
+    ],
     sameAs: [
-      "https://www.facebook.com/kivari",
-      "https://www.linkedin.com/company/kivari",
-      "https://www.instagram.com/kivari",
+      "https://facebook.com/kivari",
+      "https://twitter.com/kivari",
+      "https://linkedin.com/company/kivari",
+      "https://instagram.com/kivari",
     ],
   };
 
@@ -81,7 +55,7 @@ export default function SEO({
     url: siteUrl,
     email: displayEmail,
     telephone: "+27-71-902-0281",
-    priceRange: "$$",
+    parentOrganization: { "@id": `${siteUrl}#organization` },
     address: {
       "@type": "PostalAddress",
       addressLocality: "Midrand",
@@ -121,27 +95,30 @@ export default function SEO({
     publisher: { "@id": `${siteUrl}#organization` },
   };
 
-  const faqSchema =
-    Array.isArray(faq) && faq.length > 0
-      ? {
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: faq.map((item) => ({
-            "@type": "Question",
-            name: item.question,
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: item.answer,
-            },
-          })),
-        }
-      : null;
+  const structuredData = [structuredDataOrg, structuredDataLocal, structuredDataWebsite];
+
+  if (normalizedCanonical !== siteUrl) {
+    structuredData.push({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${normalizedCanonical}#webpage`,
+      url: normalizedCanonical,
+      name: title,
+      description,
+      inLanguage: "en-ZA",
+      isPartOf: { "@id": `${siteUrl}#website` },
+      about: { "@id": `${siteUrl}#organization` },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: ogImage,
+      },
+    });
+  }
 
   return (
     <Head>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <meta name="keywords" content={keywordContent} />
       <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
       <meta name="googlebot" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
       <meta name="author" content="KIVARI (Pty) Ltd" />
@@ -159,34 +136,25 @@ export default function SEO({
       <meta property="og:description" content={description} />
       <meta property="og:url" content={normalizedUrl} />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:image:alt" content={title} />
       <meta property="og:locale" content="en_ZA" />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image:alt" content={title} />
 
       <link rel="canonical" href={normalizedCanonical} />
-      <link rel="alternate" hrefLang="en-za" href={normalizedCanonical} />
+      <link rel="alternate" hrefLang="en-ZA" href={normalizedCanonical} />
       <link rel="alternate" hrefLang="x-default" href={normalizedCanonical} />
-      <link rel="alternate" type="text/plain" href={`${siteUrl}/llms.txt`} />
 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([structuredDataOrg, structuredDataLocal, structuredDataWebsite]),
+          __html: JSON.stringify(structuredData),
         }}
       />
-
-      {faqSchema ? (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(faqSchema),
-          }}
-        />
-      ) : null}
     </Head>
   );
 }
-
