@@ -30,6 +30,9 @@ yarn-error.log*
 
 # env files
 .env*
+hosting/app/config.php
+hosting/app/vendor/
+hosting/app/rate-limit/
 
 # vercel
 .vercel
